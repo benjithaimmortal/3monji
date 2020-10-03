@@ -180,40 +180,35 @@
 <script>
   $(function(){
     var nextPage = 1;
-    var blogContainer = $(".post-flex");
-    var totalPages = new Number (blogContainer.data("totalPages"));
+    var totalPages = new Number ($(".post-flex").data("totalPages"));
     
     function scrollCheck(){
       if($(window).scrollTop() + $(window).height() > $(document).height() - 250) {
-        if (nextPage != totalPages) { loadMorePosts() } else {
-          console.log('topped out');
+        if (nextPage != totalPages) {
+          loadMorePosts()
+        } else {
+          // bottomed out
         }
-        console.log('checked for Ajax');
       }
     };
 
     function loadMorePosts() {
       nextPage = nextPage + 1;
       $(".skeleton").addClass("active");
-      
-      console.log('loading page ' + nextPage + ' here');
-      console.log(blogContainer);
-      
-      setTimeout(() => {
-        
-        jQuery.ajax({
-          type: 'GET',
-          url: '/3monji/blog/' + nextPage,
-        })
-          .done(function(response){
-            console.log(response);
-            $(response).find('.post-card').each(function(){
-              $('.post-flex').append(this);
-              $('.skeleton').remove();
-            });
+       
+      jQuery.ajax({
+        type: 'GET',
+        url: '/3monji/blog/' + nextPage,
+      })
+        .done(function(response){
+          console.log(response);
+          $(response).find('.post-card').each(function(){
+            $('.post-flex').append(this);
+            $('.skeleton').remove();
           });
-      }, 500);
+        });
     }
+    // you're on the right page
     $(window).scroll(_.throttle(scrollCheck, 500, true));
   });
 </script>
