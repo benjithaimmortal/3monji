@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en_US"><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/3monji/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/3monji/" rel="alternate" type="text/html" hreflang="en_US" /><updated>2020-10-03T12:26:23-04:00</updated><id>http://localhost:4000/3monji/feed.xml</id><title type="html">Monjibram</title><subtitle>Benjamin Kostenbader is Front-End Developer at Top Hat. He is also a proud father, cyclist, and squash enthusiast.</subtitle><author><name>Benjamin Kostenbader</name></author><entry><title type="html">Size Matters</title><link href="http://localhost:4000/3monji/size-matters/" rel="alternate" type="text/html" title="Size Matters" /><published>2020-08-31T00:00:00-04:00</published><updated>2020-08-31T00:00:00-04:00</updated><id>http://localhost:4000/3monji/size-matters</id><content type="html" xml:base="http://localhost:4000/3monji/size-matters/">&lt;p&gt;Let’s say you’ve got a store, and you’ve got 50 products in it. Maybe that store sells, I don’t know, pants. For men and women. Sometimes you need to list all of those products on a page. You would just index them, right?&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en_US"><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/3monji/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/3monji/" rel="alternate" type="text/html" hreflang="en_US" /><updated>2020-10-03T12:45:39-04:00</updated><id>http://localhost:4000/3monji/feed.xml</id><title type="html">Monjibram</title><subtitle>Benjamin Kostenbader is Front-End Developer at Top Hat. He is also a proud father, cyclist, and squash enthusiast.</subtitle><author><name>Benjamin Kostenbader</name></author><entry><title type="html">Size Matters</title><link href="http://localhost:4000/3monji/size-matters/" rel="alternate" type="text/html" title="Size Matters" /><published>2020-08-31T00:00:00-04:00</published><updated>2020-08-31T00:00:00-04:00</updated><id>http://localhost:4000/3monji/size-matters</id><content type="html" xml:base="http://localhost:4000/3monji/size-matters/">&lt;p&gt;Let’s say you’ve got a store, and you’ve got 50 products in it. Maybe that store sells, I don’t know, pants. For men and women. Sometimes you need to list all of those products on a page. You would just index them, right?&lt;/p&gt;
 
 &lt;p&gt;Maybe that’s what I’m not quite getting. You could potentially list every single product on that page, without slowing things down. There’s no need to build out a great and terrible Web Application for that store. Make sure the images lazy-load and you’re good to go.&lt;/p&gt;
 
@@ -18,14 +18,14 @@
 &lt;p&gt;What if you want to blow out an image all the way to the side of the screen? No site container on that side. Full width. But the other side matches your margin perfectly. Something like…&lt;/p&gt;
 
 &lt;div style=&quot;width: 100%; border: dashed black 1px; margin-bottom: 30px;&quot;&gt;
-  &lt;img src=&quot;/3monji//assets/images/this.webp&quot; alt=&quot;like this&quot; style=&quot;height: auto; width: calc(50% + 200px); max-width: 95%; margin: 0 0 0 auto; display: block;&quot; /&gt;
+  &lt;img src=&quot;/3monji/assets/images/this.webp&quot; alt=&quot;like this&quot; style=&quot;height: auto; width: calc(50% + 200px); max-width: 95%; margin: 0 0 0 auto; display: block;&quot; /&gt;
 
   &lt;div class=&quot;container-sample&quot; style=&quot;margin: 0 auto; width: 400px; max-width: 90%; text-align: justify; background-color: #FFE83F;&quot;&gt;Cras justo odio, dapibus ac facilisis in, egestas eget quam. Curabitur blandit tempus porttitor. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/div&gt;
 &lt;/div&gt;
 
 &lt;p&gt;It makes things easier if you consider the two ‘halves’ of your screen like this:&lt;/p&gt;
 &lt;div style=&quot;width: 100%; border: dashed black 1px; margin-bottom: 30px; position: relative;&quot;&gt;
-  &lt;img src=&quot;/3monji//assets/images/this.webp&quot; alt=&quot;like this&quot; style=&quot;height: auto; width: calc(50% + 200px); max-width: 95%; margin: 0 0 0 auto; display: block;&quot; /&gt;
+  &lt;img src=&quot;/3monji/assets/images/this.webp&quot; alt=&quot;like this&quot; style=&quot;height: auto; width: calc(50% + 200px); max-width: 95%; margin: 0 0 0 auto; display: block;&quot; /&gt;
 
   &lt;div class=&quot;middle-line-example&quot; style=&quot;margin: 0 auto; position: absolute; height: 100%; width: 0; top: 0; left: 50%; transform: translate(-50%, 0); border-left: dashed black 1px;&quot;&gt;&lt;/div&gt;
 
@@ -52,7 +52,7 @@
   
   &lt;div class=&quot;blowout-container-sample&quot; style=&quot;display: flex; align-items: center; width: calc(50% + 200px); max-width: 95%; margin: 0 0 0 auto;&quot;&gt;
     &lt;div style=&quot;width: 100px; margin-right: 20px; font-weight: bold;&quot;&gt;Some text on the left&lt;/div&gt;
-    &lt;img src=&quot;/3monji//assets/images/this.webp&quot; alt=&quot;like this&quot; style=&quot;height: auto; width: calc(100% - 120px); display: block;&quot; /&gt;
+    &lt;img src=&quot;/3monji/assets/images/this.webp&quot; alt=&quot;like this&quot; style=&quot;height: auto; width: calc(100% - 120px); display: block;&quot; /&gt;
   &lt;/div&gt;
 
 
@@ -692,7 +692,7 @@ So at the store: apples cost $5, bananas cost $3, asian pears cost $15&lt;/p&gt;
 
 &lt;p&gt;While I do expect you to know what HTTP requests are, I’m not expecting you to be familiar with our forefathers and their seminal work on making HTTP requests by hand with web servers. You are not (yet) that server gal 🧛‍♀️. You are not (yet) Richmond.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/3monji//assets/images/blog/richmond.gif&quot; alt=&quot;An Ill Wind is Blowing&quot; title=&quot;You might not even know who he is.&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/3monji/assets/images/blog/richmond.gif&quot; alt=&quot;An Ill Wind is Blowing&quot; title=&quot;You might not even know who he is.&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;curl-is-really-capitalized-like-that&quot;&gt;cURL is Really Capitalized Like That&lt;/h2&gt;
 &lt;p&gt;In the beginning, there was a thing called cURL. It underpins a lot of HTTP requests from languages like PHP. It still exists, and it’s used in many places. Part of it is worth explaining here, but the rest can always be found &lt;a href=&quot;https://curl.haxx.se/docs/httpscripting.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
@@ -817,7 +817,7 @@ So at the store: apples cost $5, bananas cost $3, asian pears cost $15&lt;/p&gt;
 
 &lt;p&gt;I’m going to primarily reference JavaScript here but because an [associative array / map / symbol table / dictionary] is an &lt;a href=&quot;https://en.wikipedia.org/wiki/Abstract_data_type&quot;&gt;abstract data type&lt;/a&gt;, we could happily discuss this in all of the languages. But not all of the languages are cool enough to tie this to their basic Object structure, nor to have catchy, human-sounding names for things.&lt;/p&gt;
 
-&lt;!-- ![Yes, all of them](/3monji//assets/images/blog/all-the-things.png &quot;Yes, all of them.&quot;) --&gt;
+&lt;!-- ![Yes, all of them](/3monji/assets/images/blog/all-the-things.png &quot;Yes, all of them.&quot;) --&gt;
 
 &lt;h2 id=&quot;here-are-some-languages&quot;&gt;Here are some languages.&lt;/h2&gt;
 

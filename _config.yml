@@ -104,7 +104,7 @@ defaults:
 
 
 
-baseurl: "/3monji/" # the subpath of your site, e.g. /blog
+baseurl: "/3monji" # the subpath of your site, e.g. /blog
 # url: "https://www.monjibram.com" # the base hostname & protocol for your site, e.g. http://example.com
 url: "https://www.monjibram.com" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  benjithaimmortal

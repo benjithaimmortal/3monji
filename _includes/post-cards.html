@@ -1,4 +1,4 @@
-<a href='{{ post.url }}' class='post-card'>
+<a href='{{ site.baseurl }}{{ post.url }}' class='post-card'>
   <div class='left'>
     <div class='tag-date'>
       <div class='tags' data-category='{% for category in post.categories %}{{ category | slugize }}{% if forloop.last %}{% else %},{% endif %}{% endfor %}'>{% for category in post.categories %}{{ category | slugize }}{% if forloop.last %}{% else %}, {% endif %}{% endfor %}</div>
@@ -7,5 +7,5 @@
     <div class='title'>{{ post.title }}</div>
     <p class='shortcut'>{{ post.excerpt | strip_html | strip_newlines | truncatewords: 20 }}</p>
   </div>
-  <div class='right' style='background-image: url(assets/images/{{ post.hero }});'></div>
+  <div class='right' style='background-image: url({{ site.baseurl }}/assets/images/{{ post.hero }});'></div>
 </a>
