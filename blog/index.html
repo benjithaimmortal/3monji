@@ -4,3 +4,47 @@ title: Blog
 ---
 
 {% include blog-list.html %}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
+<script>
+  $(function(){
+    var nextPage = 1;
+    var blogContainer = $(".post-flex");
+    var totalPages = new Number (blogContainer.data("totalPages"));
+    
+    function scrollCheck(){
+      if($(window).scrollTop() + $(window).height() > $(document).height() - 250) {
+        if (nextPage != totalPages) { loadMorePosts() } else {
+          console.log('topped out');
+        }
+        console.log('checked for Ajax');
+      }
+    };
+
+    function loadMorePosts() {
+      nextPage = nextPage + 1;
+      $(".skeleton").addClass("active");
+      
+      console.log('loading page ' + nextPage + ' here');
+      console.log(blogContainer);
+      
+      setTimeout(() => {
+        
+        jQuery.ajax({
+          type: 'GET',
+          url: '{{ site.baseurl }}/blog/' + nextPage,
+        })
+          .done(function(response){
+            console.log(response);
+            $(response).find('.post-card').each(function(){
+              $('.post-flex').append(this);
+              $('.skeleton').remove();
+            });
+          });
+      }, 500);
+    }
+    $(window).scroll(_.throttle(scrollCheck, 500, true));
+  });
+</script>

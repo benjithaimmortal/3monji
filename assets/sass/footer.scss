@@ -1,0 +1,51 @@
+footer {
+  padding-top: 90px;
+  padding-bottom: 150px;
+  background-color: $red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .inverse-logo {
+    margin-bottom: 25px;
+    width: 110px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    svg {
+      width: 90%;
+      height: auto;
+      path, polygon {
+        fill: $white;
+      }
+    }
+  }
+  .inverse-social {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    a {
+      height: 43px;
+      width: 43px;
+      margin-right: 14px;
+      text-decoration: none;
+      border-radius: 50%;
+      background-color: $red;
+      border: solid 2px white;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      &:last-of-type {
+        margin-right: unset;
+      }
+      img {
+        width: 60%;
+        height: auto;
+      }
+    }
+  }
+}

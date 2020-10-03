@@ -1,4 +1,8 @@
 
+.blog-page .blog-index {
+  margin-bottom: unset;
+}
+
 .blog-index {
   background-color: $lightblue;
   padding-top: 50px;
@@ -111,6 +115,14 @@
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
   }
+  .post-card.skeleton {
+    display: none;
+    height: 400px;
+    &.active {
+      display: block;
+      animation: throb 2s infinite;
+    }
+  }
 }
 
 
@@ -125,6 +137,9 @@
       margin-right: unset;
       .left { width: 270px; }
       .right { width: calc(100% - 270px)}
+      &.skeleton.third {
+        display: none !important;
+      }
     }
   }
 }
@@ -228,6 +243,9 @@
         height: 230px;
         width: 100%;
         // &::after { display: inline-block; }
+      }
+      &.skeleton.second {
+        display: none !important;
       }
     }
   }

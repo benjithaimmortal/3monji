@@ -15,11 +15,23 @@
       {% endfor %}
       <div class='mob-margin filter'></div>
     </div>
-    <div class='post-flex'>
+    <div class='post-flex' data-page='{{ paginator.page }}' data-total-pages='{{ paginator.total_pages }}'>
       {% if page.title == "Blog" %}
         {% for post in paginator.posts %}
           {% include post-cards.html %}
         {% endfor %}
+        <div class='post-card skeleton'>
+          <div class='left'></div>
+          <div class='right'></div>
+        </div>
+        <div class='post-card skeleton second'>
+          <div class='left'></div>
+          <div class='right'></div>
+        </div>
+        <div class='post-card skeleton third'>
+          <div class='left'></div>
+          <div class='right'></div>
+        </div>
       {% else %}
         {% for post in site.posts %}
           {% include post-cards.html %}
