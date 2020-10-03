@@ -4,6 +4,8 @@ date: 2020-06-27
 categories:
 - Tutorials
 - WordPress
+tags:
+- Featured
 hero: custom-food-types.svg
 image: assets/images/custom-food-types.svg
 ---

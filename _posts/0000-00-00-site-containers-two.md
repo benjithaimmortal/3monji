@@ -3,6 +3,8 @@ title: "Secrets of the Site Container: Part 2"
 date: 2020-08-08
 categories:
 - Tutorials
+tags:
+- Featured
 hero: pretty-container.webp
 image: assets/images/pretty-container.webp
 ---

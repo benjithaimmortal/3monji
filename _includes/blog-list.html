@@ -4,7 +4,7 @@
     {% if page.title == "Blog" %}
       <h1 class='blog-title'>{{ page.title }}</h1>
     {% else %}
-      <h2 class='blog-title'>Blog &amp; Portfolio</h2>
+      <h2 class='blog-title'>Featured Blogs &amp; Recent Work</h2>
     {% endif %}
     <h3 class='filter-title'>Filters</h3>
     <div class='filters'>
@@ -33,7 +33,7 @@
           <div class='right'></div>
         </div>
       {% else %}
-        {% for post in site.posts %}
+        {% for post in site.tags.Featured %}
           {% include post-cards.html %}
         {% endfor %}
       {% endif %}

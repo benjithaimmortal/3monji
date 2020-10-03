@@ -4,6 +4,8 @@ date: 2020/05/17 12:09:00 Z
 categories:
 - Jamstack
 - Static&nbsp;Sites
+tags:
+- Featured
 layout: post
 author: Benji
 hero: jam.webp

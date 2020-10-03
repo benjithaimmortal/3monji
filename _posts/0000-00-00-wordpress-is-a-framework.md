@@ -4,6 +4,8 @@ date: 2020-06-20
 categories:
 - WordPress
 - CMS
+tags:
+- Featured
 hero: framework.webp
 image: assets/images/framework.webp
 ---
