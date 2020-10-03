@@ -1,0 +1,56 @@
+---
+# Feel free to add content and custom Front Matter to this file.
+# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+
+title: Monjibram
+canonical_url: "https://www.monjibram.com/"
+hero-title: Hi! I&#146;m Benji.
+hero-text: I'm Senior Front-End Developer at [Top Hat](www.builtbytophat.com/about). When I'm not running away from Internet Explorer support requests, I keep busy making beautiful things on computers, distance cycle, play squash, dad, and volunteer in the community. I am inspired by my faith, and the fact that every challenge I encounter is fun to overcome.
+stack:
+  - name: Design
+    blurb: "UI / UX Consultation, Transitions, Animations, Typography, Color, Content Layout"
+    image: assets/images/ian/design.svg
+  - name: Front-End
+    blurb: "CSS/SCSS, RESTful APIs and GraphQL, SEO, Jamstack, Vue, React, jQuery"
+    image: assets/images/ian/front-end.svg
+  - name: Back-End
+    blurb: "Security, Site Architecture, Data Indexing, Search, Privacy, User Roles"
+    image: assets/images/ian/back-end.svg
+  - name: Operations
+    blurb: "Database Maintenance, Continuous Deployment, Environment Migrations, Automation"
+    image: assets/images/ian/operations.svg
+---
+
+
+<section class='home-sweet-home'>
+  <div class='container-narrow'>
+    <img src='assets/images/ian/benji.png' alt='Hi there!' class='left'>
+    <div class='right'>
+      <h1 class='title'>{{ page.hero-title }}</h1>
+      <div class='text'>{{ page.hero-text | markdownify }}</div>
+      <div class='social'>
+        <a href="{{ site.social.links.github }}" class='git'><img src='assets/images/ian/social-g.png' alt='GitHub' class='gitr'></a>
+        <a href='{{ site.social.links.codepen }}' class='face'><img src='assets/images/ian/social-c.svg' alt='Facebook' class='facer'></a>
+        <a href='{{ site.social.links.twitter }}' class='twit'><img src='assets/images/ian/social-t.svg' alt='Twitter' class='twitr'></a>
+        <a href='{{ site.social.links.linkedin }}' class='linked'><img src='assets/images/ian/social-l.svg' alt='LinkedIn' class='linkedr'></a>
+        <!-- <a href='{{ site.social.links.facebook }}' class='face'><img src='assets/images/ian/social-f.svg' alt='Facebook' class='facer'></a> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class='the-stacks'>
+  <div class='container-wide'>
+    {% for role in page.stack %}
+    <div class='role'>
+      <div class='illy' style='background-image: url({{ role.image }});'></div>
+      <h3 class='name'>{{ role.name }}</h3>
+      <p class='blurb'>{{ role.blurb }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% include blog-list.html %}
+
+{% include contact.html %}

@@ -1,0 +1,1081 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en_US"><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en_US" /><updated>2020-10-03T12:13:59-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Monjibram</title><subtitle>Benjamin Kostenbader is Front-End Developer at Top Hat. He is also a proud father, cyclist, and squash enthusiast.</subtitle><author><name>Benjamin Kostenbader</name></author><entry><title type="html">Size Matters</title><link href="http://localhost:4000/size-matters/" rel="alternate" type="text/html" title="Size Matters" /><published>2020-08-31T00:00:00-04:00</published><updated>2020-08-31T00:00:00-04:00</updated><id>http://localhost:4000/size-matters</id><content type="html" xml:base="http://localhost:4000/size-matters/">&lt;p&gt;Let’s say you’ve got a store, and you’ve got 50 products in it. Maybe that store sells, I don’t know, pants. For men and women. Sometimes you need to list all of those products on a page. You would just index them, right?&lt;/p&gt;
+
+&lt;p&gt;Maybe that’s what I’m not quite getting. You could potentially list every single product on that page, without slowing things down. There’s no need to build out a great and terrible Web Application for that store. Make sure the images lazy-load and you’re good to go.&lt;/p&gt;
+
+&lt;p&gt;What if that store gets really popular, you ask? Then the simple answer helped. Query the API, update product quantities on your local index, and you’re done.&lt;/p&gt;
+
+&lt;p&gt;We are in the business of finding the &lt;em&gt;right&lt;/em&gt; framework for each situation. Sometimes (rarely) the right framework is the biggest. Sometimes it’s a single page. It’s usually going to be in the middle. &lt;a href=&quot;/jam-that-sucker/&quot;&gt;It’s always got to be fast&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I apologize for my Coyier-esque blog. You deserved more content than this. But sometimes the idea is more important than the implementation.&lt;/p&gt;</content><author><name>Benji</name></author><category term="Site&amp;nbsp;Architecture" /><summary type="html">Let’s say you’ve got a store, and you’ve got 50 products in it. Maybe that store sells, I don’t know, pants. For men and women. Sometimes you need to list all of those products on a page. You would just index them, right?</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/size-matters.webp" /><media:content medium="image" url="http://localhost:4000/assets/images/size-matters.webp" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Secrets of the Site Container: Part 2</title><link href="http://localhost:4000/site-containers-two/" rel="alternate" type="text/html" title="Secrets of the Site Container: Part 2" /><published>2020-08-08T00:00:00-04:00</published><updated>2020-08-08T00:00:00-04:00</updated><id>http://localhost:4000/site-containers-two</id><content type="html" xml:base="http://localhost:4000/site-containers-two/">&lt;p&gt;Containers are functional. Containers are necessary. Without them you’re exploring the great unknown of horizontal scrolling on a vertical page. Holding shift when you torque the mousewheel. It isn’t too much to ask to make it beautiful, though, is it?&lt;/p&gt;
+
+&lt;p&gt;Well, to be honest, most of the time that answer is yes. Function always comes before form, and things aren’t going to work better if you add bells and whistles. I really, truly believe that isn’t just my Pennsylvania Dutch heritage telling me that it doesn’t get better than hand-built Amish furniture. &lt;em&gt;These hills are in my blood.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;But we do need creativity and freedom. We need to show that we aren’t constrained. Sometimes breaking the rules just enough is proving that you knew the real rules all along. 🥃🕶🚬&lt;/p&gt;
+
+&lt;p&gt;What a meta, over-philosophical introduction to another blog about &lt;a href=&quot;/secrets-of-site-containers/&quot;&gt;site containers&lt;/a&gt;!&lt;/p&gt;
+
+&lt;h2 id=&quot;making-boxes-that-arent-quite-in-the-middle&quot;&gt;Making boxes that aren’t quite in the middle&lt;/h2&gt;
+&lt;p&gt;What if you want to blow out an image all the way to the side of the screen? No site container on that side. Full width. But the other side matches your margin perfectly. Something like…&lt;/p&gt;
+
+&lt;div style=&quot;width: 100%; border: dashed black 1px; margin-bottom: 30px;&quot;&gt;
+  &lt;img src=&quot;/assets/images/this.webp&quot; alt=&quot;like this&quot; style=&quot;height: auto; width: calc(50% + 200px); max-width: 95%; margin: 0 0 0 auto; display: block;&quot; /&gt;
+
+  &lt;div class=&quot;container-sample&quot; style=&quot;margin: 0 auto; width: 400px; max-width: 90%; text-align: justify; background-color: #FFE83F;&quot;&gt;Cras justo odio, dapibus ac facilisis in, egestas eget quam. Curabitur blandit tempus porttitor. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;It makes things easier if you consider the two ‘halves’ of your screen like this:&lt;/p&gt;
+&lt;div style=&quot;width: 100%; border: dashed black 1px; margin-bottom: 30px; position: relative;&quot;&gt;
+  &lt;img src=&quot;/assets/images/this.webp&quot; alt=&quot;like this&quot; style=&quot;height: auto; width: calc(50% + 200px); max-width: 95%; margin: 0 0 0 auto; display: block;&quot; /&gt;
+
+  &lt;div class=&quot;middle-line-example&quot; style=&quot;margin: 0 auto; position: absolute; height: 100%; width: 0; top: 0; left: 50%; transform: translate(-50%, 0); border-left: dashed black 1px;&quot;&gt;&lt;/div&gt;
+
+
+  &lt;div class=&quot;container-sample&quot; style=&quot;margin: 0 auto; width: 400px; max-width: 90%; text-align: justify; background-color: #FFE83F;&quot;&gt;Cras justo odio, dapibus ac facilisis in, egestas eget quam. Curabitur blandit tempus porttitor. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The right side of that image is blowing out to 50%! Dead simple. The left side is &lt;em&gt;exactly half of the site container’s width&lt;/em&gt;. The only remaining magic is to push the block toward the side you’re locking it on with an automatic margin. Here’s the code for that.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-scss&quot; data-lang=&quot;scss&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.that-img-container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// make sure that bad boy is a block element, of course&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// 50% + half of the container in pixels&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;calc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;200px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// 50% + half of the maximum container in percents&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;max-width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;95%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// push it right&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;margin-left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;How about a container for text, next to that image? You might be tempted to do heavy math on that. Don’t do heavy math on that.&lt;/p&gt;
+
+&lt;div style=&quot;width: 100%; border: dashed black 1px; margin-bottom: 30px; position: relative;&quot;&gt;
+  
+  &lt;div class=&quot;blowout-container-sample&quot; style=&quot;display: flex; align-items: center; width: calc(50% + 200px); max-width: 95%; margin: 0 0 0 auto;&quot;&gt;
+    &lt;div style=&quot;width: 100px; margin-right: 20px; font-weight: bold;&quot;&gt;Some text on the left&lt;/div&gt;
+    &lt;img src=&quot;/assets/images/this.webp&quot; alt=&quot;like this&quot; style=&quot;height: auto; width: calc(100% - 120px); display: block;&quot; /&gt;
+  &lt;/div&gt;
+
+
+  &lt;div class=&quot;middle-line-example&quot; style=&quot;margin: 0 auto; position: absolute; height: 100%; width: 0; top: 0; left: 50%; transform: translate(-50%, 0); border-left: dashed black 1px;&quot;&gt;&lt;/div&gt;
+
+
+  &lt;div class=&quot;container-sample&quot; style=&quot;margin: 0 auto; width: 400px; max-width: 90%; text-align: justify; background-color: #FFE83F;&quot;&gt;Cras justo odio, dapibus ac facilisis in, egestas eget quam. Curabitur blandit tempus porttitor. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The code:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-scss&quot; data-lang=&quot;scss&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.that-img-container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;align-items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;flex-wrap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;nowrap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;calc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;200px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;max-width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;95%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;margin-left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.side-text&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;margin-right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;20px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.image&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// everything but the text and margins&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;calc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;120px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;making-things-that-arent-a-box&quot;&gt;Making things that aren’t a box&lt;/h2&gt;
+&lt;p&gt;Let’s say you have a thing that isn’t a square, or doesn’t require constraining at all. That thing might not flow at the same speed as your page content. It might not even be positioned relative to it. The easy answer for that is &lt;code class=&quot;highlighter-rouge&quot;&gt;position&lt;/code&gt; itself. Which has the potential to negate a lot of the power of a site container as well.&lt;/p&gt;
+
+&lt;dl&gt;
+  &lt;dt&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;position: static;&lt;/code&gt;&lt;/dt&gt;
+  &lt;dd&gt;The default. Should work the same as &lt;code class=&quot;highlighter-rouge&quot;&gt;unset&lt;/code&gt;, so this is what you do if you have to override somebody else’s work, but you also want them to think you’re smart (read: force them to look up your solution).&lt;/dd&gt;
+  &lt;dt&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;position: relative;&lt;/code&gt;&lt;/dt&gt;
+  &lt;dd&gt;Makes everything tick. It’s a way to set the parent for all of your &lt;code class=&quot;highlighter-rouge&quot;&gt;position&lt;/code&gt; children.&lt;/dd&gt;
+  &lt;dt&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;position: absolute;&lt;/code&gt;&lt;/dt&gt;
+  &lt;dd&gt;Ignores block positioning. It lets things go on top of (or underneath) other things. It refers back to most recent &lt;code class=&quot;highlighter-rouge&quot;&gt;position&lt;/code&gt;-assigned parent to determine its place. If none is available, it’s positioned on &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;body&amp;gt;&lt;/code&gt; itself. It then uses &lt;code class=&quot;highlighter-rouge&quot;&gt;top&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;bottom&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;left&lt;/code&gt;, or &lt;code class=&quot;highlighter-rouge&quot;&gt;right&lt;/code&gt; to determine coordinates on that element.&lt;/dd&gt;
+  &lt;dt&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;position: fixed;&lt;/code&gt;&lt;/dt&gt;
+  &lt;dd&gt;Like &lt;code class=&quot;highlighter-rouge&quot;&gt;absolute&lt;/code&gt; on crack. Ignores block positiong and parents. Almost always a terrible idea, especially for accessibility. So of course I’ve used it in a final build!&lt;/dd&gt;
+  &lt;dt&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;position: sticky;&lt;/code&gt;&lt;/dt&gt;
+  &lt;dd&gt;The fun uncle. Make things stick at a certain point, but only inside of the parent. Not supported by IE, but generally it doesn’t matter – most standard uses &lt;a href=&quot;https://www.w3.org/wiki/Graceful_degradation_versus_progressive_enhancement&quot;&gt;degrade gracefully&lt;/a&gt;.&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;h2 id=&quot;the-centered-thing&quot;&gt;The centered thing.&lt;/h2&gt;
+&lt;p&gt;This might be amateur hour but here’s how to center a thing that is absolutely positioned.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-scss&quot; data-lang=&quot;scss&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.thing-parent&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;relative&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.thing&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;absolute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// parent container percents&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// child item percents &lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;translate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-50%&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;-50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// (to make its center the target, subtract 50% of each axis)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;But did you know, for example, that padding, borders, margins all flow &lt;em&gt;outside&lt;/em&gt; of that position?&lt;/p&gt;
+
+&lt;div style=&quot;width: 100%; position: relative; height: 100px; border: dashed 1px #F96714&quot;&gt;
+  &lt;div style=&quot;position: absolute; width: 100%; padding: 10px; top: 50%; left: 50%; transform: translate(-50%, -50%); border: dashed 1px #77212E&quot;&gt;Here's an example of that. The text will flow normally inside of the container, but you'll have to fix the space around the item separately...&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;width: 100%; position: relative; height: 200px; border: dashed 1px #F96714; margin-top: 20px;&quot;&gt;
+  &lt;div style=&quot;position: absolute; width: calc(100% - 22px); padding: 10px; top: 50%; left: 50%; transform: translate(-50%, -50%); border: dashed 1px #77212E&quot;&gt;... like this! Account for the padding, the border-width, and the margins. Usually they're the same on both sides of the item, so you can just multiply them by two: &lt;br /&gt;&lt;code&gt;width: calc(100% - (padding + border + margin) * 2);&lt;/code&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;position-containers&quot;&gt;Position Containers&lt;/h2&gt;
+&lt;p&gt;Containers &lt;em&gt;need&lt;/em&gt; to be relatively positioned (if they are positioned at all) to your document’s &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;body&amp;gt;&lt;/code&gt;, or they will likely lose their pinpoint mathematical accuracy and throw in extra space.&lt;/p&gt;
+
+&lt;p&gt;Positioning other things inside of a well-built site container is fair game, as long as you know exactly how big the things are. Using default-styled things like &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;p&amp;gt;&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;h1&amp;gt;&lt;/code&gt;? You’re studdenly worrying about the default bottom margins, and the total height of the element. If something looks off optically, you can use my debugging reticle:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-scss&quot; data-lang=&quot;scss&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.top-left&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.top-right&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.bottom-left&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.bottom-right&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;40px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;40px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;tomato&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;solid&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;absolute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.top-left&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;border-left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;border-top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;translate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-100%&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;-100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.top-right&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;border-right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;border-top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;translate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;-100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.bottom-left&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;border-left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;border-bottom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;translate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-100%&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.bottom-right&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;border-right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nl&quot;&gt;border-bottom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;// no need to transform, we're already there&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;your-container&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;top-left&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;top-right&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bottom-left&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bottom-right&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;and-then-there-was-nothing&quot;&gt;And then there was… nothing!&lt;/h2&gt;
+&lt;p&gt;You are now a master. I can teach you nothing more. But if you wish, we may start considering the almighty &lt;code class=&quot;highlighter-rouge&quot;&gt;display: grid;&lt;/code&gt; and its infinitely complex version of the exact same things I mention above.&lt;/p&gt;
+
+&lt;p&gt;Grid is always fun. It is really powerful. But it also reminds me of the days when we encapsulated entire pages in tables. Let’s save that for layout decisions, menus, and other places where it’s actually needed!&lt;/p&gt;</content><author><name>Benji</name></author><category term="Tutorials" /><summary type="html">Containers are functional. Containers are necessary. Without them you’re exploring the great unknown of horizontal scrolling on a vertical page. Holding shift when you torque the mousewheel. It isn’t too much to ask to make it beautiful, though, is it?</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/pretty-container.webp" /><media:content medium="image" url="http://localhost:4000/assets/images/pretty-container.webp" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Secrets of the Site Container: Part 1</title><link href="http://localhost:4000/secrets-of-site-containers/" rel="alternate" type="text/html" title="Secrets of the Site Container: Part 1" /><published>2020-07-24T00:00:00-04:00</published><updated>2020-07-24T00:00:00-04:00</updated><id>http://localhost:4000/secrets-of-site-containers</id><content type="html" xml:base="http://localhost:4000/secrets-of-site-containers/">&lt;p&gt;Big screens are getting bigger. Wider. Less expensive. Our web experience should be seamless, but our eyes can’t adjust to giant blobby things. Containers to the rescue. But first, a digression about font-size and readability!&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 style=&quot;margin: -25px 0 20px; line-height: 1.1; font-weight: 500;&quot;&gt;&lt;strong&gt;Disclaimer!&lt;/strong&gt; This page may scroll horizontally. It's ironic, because it's about site containers.&lt;/h4&gt;
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;theres-a-problem-with-your-eyes&quot;&gt;There’s a problem with your eyes&lt;/h2&gt;
+&lt;p&gt;You can’t read long lines of text. The common recommendation is between &lt;a href=&quot;https://www.smashingmagazine.com/2014/09/balancing-line-length-font-size-responsive-web-design/&quot;&gt;45 and 75 characters per line&lt;/a&gt;. You may have experienced this issue when you tried to use your TV as a monitor. Wait you never did that? Oh, no, me either 😅&lt;/p&gt;
+
+&lt;p&gt;Imagine that length as two or three alphabets, back to back. Of course the length of the alphabet depends on how large the character widths are. In this particular body font, I can get a better sense by incorporating capitalized letters. Or I could even use them outright.&lt;/p&gt;
+
+&lt;p&gt;Just about this long:
+abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz&lt;/p&gt;
+
+&lt;p&gt;Maybe this long:
+AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz&lt;/p&gt;
+
+&lt;p&gt;Or even this long:
+ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ&lt;/p&gt;
+
+&lt;h2 id=&quot;but-really-big-views-are-bad-too&quot;&gt;But really big views are bad too&lt;/h2&gt;
+&lt;p&gt;The unspoken flip-side comes from larger font sizes at a close distance. Making the text larger for larger screens only works until your &lt;a href=&quot;https://en.wikipedia.org/wiki/Saccade&quot;&gt;saccade&lt;/a&gt; becomes noticeably uncomfortable. Thus a rather fine case &lt;a href=&quot;https://baymard.com/blog/line-length-readability&quot;&gt;against a purely liquid layout&lt;/a&gt;. For large web views, I err on the side of caution. I keep font-size the same on even the largest screens. So something beyond 750px is bad.&lt;/p&gt;
+
+&lt;h2 id=&quot;compare-the-next-two-paragraphs&quot;&gt;Compare the next two paragraphs:&lt;/h2&gt;
+&lt;h3 id=&quot;paragraph-1&quot;&gt;Paragraph 1:&lt;/h3&gt;
+&lt;div style=&quot;font-size: 20px; line-height: 1.1; letter-spacing: 1.2px; width: 565px;&quot;&gt;Nullam id dolor id nibh ultricies vehicula ut id elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, fermentum massa justo sit amet risus. &lt;br /&gt;&lt;br /&gt;
+abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz&lt;/div&gt;
+
+&lt;h3 id=&quot;paragraph-2&quot;&gt;Paragraph 2:&lt;/h3&gt;
+&lt;div style=&quot;font-size: 40px; line-height: 1.2; letter-spacing: 1.5px; width: 1045px; margin-bottom: 35px;&quot;&gt;Nullam id dolor id nibh ultricies vehicula ut id elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, fermentum massa justo sit amet risus. &lt;br /&gt;&lt;br /&gt;
+abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The larger text made it hard to move from the end of one line to the start of the next. Either it’s because you’re scrolling around, or just because your screen was so big that your eye movement was unnatural.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;honestly-this-doesnt-really-change-with-non-text-items&quot;&gt;Honestly this doesn’t really change with non-text items&lt;/h2&gt;
+
+&lt;p&gt;A huge image doesn’t help. Even disregarding image sizing and web optimization (our rule at work is twice the pixels for each web pixel, so we get some pretty large picture file sizes!) you’ll quickly lose a picture of a forest for some giant trees.&lt;/p&gt;
+
+&lt;p&gt;The solution to this is the same as most other web design problems: a few extra tag wrappers and some CSS. But &lt;em&gt;how&lt;/em&gt; is the more important question. That’s how this blog was born.&lt;/p&gt;
+
+&lt;h2 id=&quot;zero-use-appropriate-html&quot;&gt;Zero. Use appropriate HTML&lt;/h2&gt;
+
+&lt;p&gt;The sectional approach to site configuration is underrated. A good page has content sections, and they are usually at least 2/3 the height of your browser window. Taking up space and using the infinite scroll canvas that is available to you dramatically increases user interaction and readability. There is also a great reason that HTML has a &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;section&amp;gt;&lt;/code&gt; tag! It’s for holding this container! Use it like this:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;section&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hero&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hero-container&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- your div contents --&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;em&gt;Note: Your section tag might have a full-width background image or other width-breaking things. Don’t limit yourself by making the section tag itself a container.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;one-start-at-the-maximum-which-is-actually-the-smallest&quot;&gt;One. Start at the maximum, which is actually the smallest.&lt;/h2&gt;
+
+&lt;p&gt;What’s the maximum width that your section can be? The answer might not make immediate sense. &lt;code class=&quot;highlighter-rouge&quot;&gt;max-width&lt;/code&gt; should be used on your smallest screen sizes. The narrowest screen I’ve seen on devtools is the iPhone 5/SE, weighing in at a mere 325px. If your maximum width is above that, your site will horizontally scroll on that screen. If you use absolute units, your page will forever be confined to 325px.&lt;/p&gt;
+
+&lt;div style=&quot;display: flex; flex-wrap: no-wrap; justify-content: center; align-items: flex-grow; margin-bottom: 20px;&quot;&gt;
+  &lt;div style=&quot;width: calc((100% - 330px) / 2); background-color: #350e1411;&quot;&gt;&lt;/div&gt;
+  &lt;p style=&quot;width: 320px; margin: 20px auto 25px; padding-bottom: unset;&quot;&gt;Don't make your site live in a world that is only 325 px wide, it is a special place where UX dreams go to die and nothing can be accomplished. Two sentences of this took up six lines and looked terrible.&lt;/p&gt;
+  &lt;div style=&quot;width: calc((100% - 330px) / 2); margin-left: -5px; background-color: #350e1411;&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Instead, you need a &lt;em&gt;relative-unit based&lt;/em&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;max-width&lt;/code&gt; to account for things. I use percentages, because they are based on your container’s size. If your container is &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;body&amp;gt;&lt;/code&gt;, that’s great, but even if you’re dealing with a strange outer container this won’t break width as a &lt;code class=&quot;highlighter-rouge&quot;&gt;vw&lt;/code&gt; might.&lt;/p&gt;
+
+&lt;p&gt;So what percentage? If it’s a hero section it’ll probably be at the widest your screen allows, but it should never break the horizontal dimensions of your device. So that’s &lt;code class=&quot;highlighter-rouge&quot;&gt;100%&lt;/code&gt;. Text also needs to breathe, so text on a small screen should be &lt;code class=&quot;highlighter-rouge&quot;&gt;90-95%&lt;/code&gt;. A card or something that is supposed to visually break the monotony of the left edge can creep in more, but after &lt;code class=&quot;highlighter-rouge&quot;&gt;85%&lt;/code&gt; things start to get silly.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-scss&quot; data-lang=&quot;scss&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.hero-container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;max-width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.text-container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;max-width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;95%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.narrow-container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;max-width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;90%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;two-move-on-to-bigger-and-better-screens&quot;&gt;Two: Move on to bigger and better screens.&lt;/h2&gt;
+
+&lt;p&gt;We’ve determined that text should live somewhere between &lt;code class=&quot;highlighter-rouge&quot;&gt;600px-750px&lt;/code&gt;. Once we find that sweet spot, that’s really the size we want. So let’s use that as our &lt;code class=&quot;highlighter-rouge&quot;&gt;width&lt;/code&gt;!&lt;/p&gt;
+
+&lt;p&gt;Other widths will make sense too. Most images look great at between &lt;code class=&quot;highlighter-rouge&quot;&gt;1280-1500px&lt;/code&gt;, your modern laptop screen width. If it’s a group of cards or items, they might follow the same path, though individual items with paragraphs will follow the same text readability rule.&lt;/p&gt;
+
+&lt;p&gt;Our outlying ‘monotony breakers’ can live somewhere between a paragraph and a hero.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-scss&quot; data-lang=&quot;scss&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.hero-container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1500px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;max-width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.text-container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;750px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;max-width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;95%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.narrow-container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1100px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;max-width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;90%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;left-of-center&quot;&gt;Left of center&lt;/h2&gt;
+
+&lt;p&gt;Browsers automatically place blocks starting from the left. Your screen probably looks like this:&lt;/p&gt;
+&lt;div style=&quot;height: 100px; max-width: 100%; width: 1500px; background-color: #2A4B7C44;&quot;&gt;&lt;/div&gt;
+&lt;div style=&quot;height: 100px; max-width: 90%; width: 1100px; background-color: #350e1444;&quot;&gt;&lt;/div&gt;
+&lt;div style=&quot;height: 100px; max-width: 95%; width: 750px; background-color: #264E3644; margin-bottom: 20px;&quot;&gt;&lt;/div&gt;
+
+&lt;p&gt;Well that isn’t surprising! Block-level elements fill from the left. All you need to do is center those elements on the screen and you’re set. &lt;code class=&quot;highlighter-rouge&quot;&gt;display: flex;&lt;/code&gt; will accomplish this, but changing your overall display feels like overkill. All you need is some sort of automatic margin on both sides of your section, to keep it centered. You know, like &lt;code class=&quot;highlighter-rouge&quot;&gt;margin: 0 auto;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-scss&quot; data-lang=&quot;scss&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.hero-container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1500px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;max-width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.text-container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;750px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;max-width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;95%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.narrow-container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1100px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;max-width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;90%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;tada&quot;&gt;Tada!&lt;/h2&gt;
+
+&lt;div style=&quot;margin: 0 auto; height: 100px; max-width: 100%; width: 1500px; background-color: #2A4B7C44;&quot;&gt;&lt;/div&gt;
+&lt;div style=&quot;margin: 0 auto; height: 100px; max-width: 90%; width: 1100px; background-color: #350e1444;&quot;&gt;&lt;/div&gt;
+&lt;div style=&quot;height: 100px; max-width: 95%; width: 750px; background-color: #264E3644; margin: 0 auto 20px;&quot;&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;next-steps&quot;&gt;Next steps:&lt;/h2&gt;
+
+&lt;p&gt;What if you want to blow out the screen, anchoring items to the left or right on one side while maintaining your site container width on the other? It’s not impossible. &lt;a href=&quot;/site-containers-two/&quot;&gt;I’ll show you how in my next article&lt;/a&gt;!&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;You can also &lt;a href=&quot;https://codepen.io/benjithaimmortal/full/XWXyJjX&quot;&gt;see this blog in action on CodePen&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Benji</name></author><category term="Tutorials" /><summary type="html">Big screens are getting bigger. Wider. Less expensive. Our web experience should be seamless, but our eyes can’t adjust to giant blobby things. Containers to the rescue. But first, a digression about font-size and readability!</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/containers.webp" /><media:content medium="image" url="http://localhost:4000/assets/images/containers.webp" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Less Than 365 Days of Code</title><link href="http://localhost:4000/get-a-life/" rel="alternate" type="text/html" title="Less Than 365 Days of Code" /><published>2020-07-04T00:00:00-04:00</published><updated>2020-07-04T00:00:00-04:00</updated><id>http://localhost:4000/get-a-life</id><content type="html" xml:base="http://localhost:4000/get-a-life/">&lt;p&gt;You should be a part of your local software community. You need to learn things. You probably don’t need to learn &lt;em&gt;all&lt;/em&gt; of the things, but it’s good for you to learn most of them. You’re supposed to be an expert. But you should also probably have a life.&lt;/p&gt;
+
+&lt;p&gt;I recently joined &lt;a href=&quot;https://twitter.com/monjibram&quot;&gt;Twitter&lt;/a&gt;. I jumped on that smoldering, outdated bandwagon. It was a sad day for my productivity. I’m learning lots of small things, like how to short-circuit instead of using an &lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt; block and which order to assign styles for &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;a&amp;gt;&lt;/code&gt; tags. I’m also learning that it’s been &lt;strong&gt;#100daysofcode&lt;/strong&gt; since forever, and &lt;em&gt;“if you just do this an hour a day, you’ll be famous/rich/happy”&lt;/em&gt;. I don’t think I want to do Twitter an hour every day.&lt;/p&gt;
+
+&lt;p&gt;It’s July 4th today. Yes, I didn’t write this ahead of time, it’s literally the night of July 4th. I’m sitting here listening to the entire western half of Pennsylvania erupt in joyous war sounds. I am not quite hiding in a closet. Not quite.&lt;/p&gt;
+
+&lt;p&gt;Today I played in an inflatable pool. I rode a bike. I ate hot dogs and watermelon and ice cream. I went to a park. But I will tell you what I didn’t do:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I DID NOT CODE TODAY.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I haven’t done it since Thursday. I took a few days off. And you should too! This is an underrated and important thing about your life: it is more than your job.&lt;/p&gt;
+
+&lt;h2 id=&quot;why-you-are-here&quot;&gt;Why you are here&lt;/h2&gt;
+&lt;p&gt;I’ve been trained in classical theology and exegesis. I have some pretty set ideas on why we exist. I’m going to simplify them a bit for the sake of &lt;em&gt;the unanimous acceptance of my ideas&lt;/em&gt;, and also because it would likely bore you.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;We exist to do good.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So there’s the basic doing good with little things, which doesn’t feel very fun. You can do good by writing your name, and it will please your parents, and maybe you’ll get a few points on the SAT (I am old, I don’t know this for sure anymore.) If you write it enough, maybe it will look beautiful! Now you’re sort of pleasing people with art.&lt;/p&gt;
+
+&lt;p&gt;That’s also how your job looks, compared to your life. You can do it well, and get paid money for it, and maybe even sort of please other people with how awesome you are. It’s important enough, in its own right. Maybe you’re so good at it that you help &lt;em&gt;other people&lt;/em&gt; work. But your job is also a job. If you quit tomorrow, it will no longer be about you. It will no longer be &lt;em&gt;your&lt;/em&gt; good.&lt;/p&gt;
+
+&lt;h2 id=&quot;ways-you-can-do-good&quot;&gt;Ways you can do good&lt;/h2&gt;
+&lt;p&gt;There is a more tangible and lasting good you can do, and it feels better than anything you accomplish for money. For some people, this is having a family. I have a family. They’re cool. You might have already hear that &lt;em&gt;if you spend one hour every day on your family, you’re going to have an awesome family&lt;/em&gt;. Maybe you can/should spend a little bit more than that. Hey, if I post that on Twitter will 3,000 little birds heart it?&lt;/p&gt;
+
+&lt;p&gt;Of course you don’t need a literal family to do good. Your contributions to your friends and your community make them a little bit like a family too. If you invest in the lives of those people, they might indeed feel that your part of their life was a formative part, and you’ll live on vicariously through their successes, and help to share some of the weight of their tribulations. That’s also doing good.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-think-about-doing-good&quot;&gt;How to think about doing good&lt;/h2&gt;
+&lt;p&gt;Maybe the most important part of doing good is that &lt;strong&gt;&lt;em&gt;it really isn’t about you at all&lt;/em&gt;&lt;/strong&gt;. If you’re doing it right, you are not doing good to achieve something personal. You’re just pushing up the human race a little bit more.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Whoever wants to save their life will lose it…&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;It might seem a bit antithetical, but to truly be a good-doer you can’t be in it for the reward of being a good-doer. You need to be there for the others.&lt;/p&gt;
+
+&lt;p&gt;Managers might understand this on another level. To manage people effectively you need to weigh their immediate value to the company, but you also need to consider their needs and ambitions. Honestly investing in your employee’s wellbeing can very well turn them into an extension of your own will.&lt;/p&gt;
+
+&lt;p&gt;This is why it’s so hard to really do good at a job. I had one of the best good-doer jobs ever. I got to teach kids (in English) how to be world leaders. But I quickly found some major impediments to calling that ‘my good’:&lt;/p&gt;
+
+&lt;dl&gt;
+  &lt;dt&gt;I got paid&lt;/dt&gt;
+  &lt;dd&gt;That was a thing I did for money, and sometimes that fourth-wall was broken, by my students, my coworkers, and even myself.&lt;/dd&gt;
+  &lt;dt&gt;Other people co-owned that good&lt;/dt&gt;
+  &lt;dd&gt;Someone was investing money in it, but it wasn’t me. It was never really my piece of good to begin with. I honestly can’t see where I ended and it began, anyway.&lt;/dd&gt;
+  &lt;dt&gt;There was an ulterior motive&lt;/dt&gt;
+  &lt;dd&gt;You may not understand this if you’re not in the do-gooder profession. There’s a specific reason for any public works job. Sometimes you are forced to skip that thing that could really change one life in order to keep doing the good your job needs.&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;That’s not to say that I didn’t try hard to dedicate my time to make up for those situations. I did! But sometimes they were just out of my control.&lt;/p&gt;
+
+&lt;p&gt;It’s been the opposite with my family and social contributions. I felt a stronger impact serving, volunteering, and leading community work than the entire summation of my career. And I feel a certain sort of expectation while watching my son have his own adventures. I have poured my love into him so that he can have a great life, and in return I feel so vicariously happy when he succeeds.&lt;/p&gt;
+
+&lt;h2 id=&quot;why-did-i-write-this&quot;&gt;Why did I write this?&lt;/h2&gt;
+&lt;p&gt;Because I think your code isn’t the only part of you. It shouldn’t even be the main part. You are alive for a reason, and you are the good you want to see in the world.&lt;/p&gt;
+
+&lt;p&gt;So take a break. Refocus on what’s important. Make love, not war. And &lt;em&gt;please, for the love of humanity, cool it with the fireworks&lt;/em&gt;.&lt;/p&gt;</content><author><name>Benji</name></author><category term="Development" /><category term="Life" /><summary type="html">You should be a part of your local software community. You need to learn things. You probably don’t need to learn all of the things, but it’s good for you to learn most of them. You’re supposed to be an expert. But you should also probably have a life.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/life.webp" /><media:content medium="image" url="http://localhost:4000/assets/images/life.webp" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">WP Custom Post Types but Free</title><link href="http://localhost:4000/jekyll-custom-post-types/" rel="alternate" type="text/html" title="WP Custom Post Types but Free" /><published>2020-06-27T00:00:00-04:00</published><updated>2020-06-27T00:00:00-04:00</updated><id>http://localhost:4000/jekyll-custom-post-types</id><content type="html" xml:base="http://localhost:4000/jekyll-custom-post-types/">&lt;p&gt;Sometimes you’re good at more than one type of thing. That’s OK, you’re human. We like to categorize things and study them logically to distinguish them from each other. We argue about definitions. We like tables. We like lists. We make Custom Types for everything.&lt;/p&gt;
+
+&lt;p&gt;What’s &lt;em&gt;not&lt;/em&gt; so OK is if you’re developing on a “simple” blog templating tool and you think you can’t. Those things only do blogs, right? The type of data you’re storing is a blog. The metadata on those posts is standard. You can’t well use that for recipes AND blogs. Just make a &lt;code class=&quot;highlighter-rouge&quot;&gt;recipes&lt;/code&gt; tag and call it a day.&lt;/p&gt;
+
+&lt;p&gt;Luckily that’s not true at all… you can automate almost anything you want with a little ingenuity, and automation is the key to efficient web work. In most cases I’m learning Jekyll was actually built for this sort of automation, but the documentation isn’t always very helpful to show you &lt;a href=&quot;https://jekyllrb.com/docs/liquid/&quot;&gt;how to use it&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;meta-meta&quot;&gt;Meta-meta&lt;/h2&gt;
+&lt;p&gt;In part one &lt;a href=&quot;/jekyll-custom-fields/&quot;&gt;we talked about Liquid&lt;/a&gt;, and how to use it to make ACF-like custom fields on your static marketing site. That’s all well and good if you’ve got individual pages that you want to clone. But what about whole categories of content?&lt;/p&gt;
+
+&lt;h2 id=&quot;meta-meta-meta&quot;&gt;Meta-meta-meta&lt;/h2&gt;
+&lt;p&gt;WordPress calls that stuff Custom Post Types. It’s based on the idea that you want &lt;code class=&quot;highlighter-rouge&quot;&gt;posts&lt;/code&gt; for writing things, but you also want a &lt;code class=&quot;highlighter-rouge&quot;&gt;projects&lt;/code&gt; section that shows off your wow mad skillz. You’d probably like to query those &lt;code class=&quot;highlighter-rouge&quot;&gt;projects&lt;/code&gt; independently of the &lt;code class=&quot;highlighter-rouge&quot;&gt;posts&lt;/code&gt;. And maybe you’d like some &lt;code class=&quot;highlighter-rouge&quot;&gt;events&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;programs&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;cats&lt;/code&gt;, and &lt;code class=&quot;highlighter-rouge&quot;&gt;hairpieces&lt;/code&gt;. Your business is not the strangest thing on the internet, I promise.&lt;/p&gt;
+
+&lt;p&gt;All of those types are still going to generate data in the same way a blog would. You’ll have an index, an author, a post-date, a title, and some contents. You’ll have a single template for the files, with whatever custom metadata you like, and you can query a list of all of the fields in some format to make it easy for people to search and peruse.&lt;/p&gt;
+
+&lt;h2 id=&quot;custom-post-types-are-called-collections&quot;&gt;Custom Post Types are called Collections&lt;/h2&gt;
+&lt;p&gt;As we know, Jekyll is a blog generator! Jekyll does the bloggy parts of this just fine. It also has built-in functionality for Custom Post Types that work in tandem with the blog. The creators of Jekyll, having no ties to WordPress that I know of, decided &lt;em&gt;not&lt;/em&gt; to name their custom post types Custom Post Types. They call them Collections.&lt;/p&gt;
+
+&lt;p&gt;In 5 years of building Jekyll sites, I never came across a Collection. I didn’t know what it was. (Before I had a full-time development job, I didn’t even know why I would need something like it.) But it is pretty darn swanky! It can do everything that a WordPress CPT can do, and pre-render the pages as they are built.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Pre-rendered for your viewing pleasure&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I will say that again, louder. It can do all of the work to render a list of these blogs &lt;em&gt;one time&lt;/em&gt; and &lt;em&gt;store the results&lt;/em&gt; to be served instantly. If the build time takes an extra ten minutes, it’s not a bother for your end users. If you come from a WordPress background (or most full-stack projects), this might take some getting used to.&lt;/p&gt;
+
+&lt;h2 id=&quot;old-way-of-thinking&quot;&gt;Old Way of thinking:&lt;/h2&gt;
+
+&lt;p&gt;This is a common thought process for a WordPress developer:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;I need only the posts within a certain Post Type, with a certain field.&lt;/li&gt;
+  &lt;li&gt;I need to loop through them and grab a connecting ID for other post types.&lt;/li&gt;
+  &lt;li&gt;Then I need to loop through &lt;em&gt;those IDs&lt;/em&gt; and display their special metadata.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;really-bad-but-easy-to-follow-example&quot;&gt;Really bad but easy to follow example&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$artist_query&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get_posts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+  &lt;span class=&quot;s1&quot;&gt;'numberposts'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;      &lt;span class=&quot;c1&quot;&gt;// all of 'em&lt;/span&gt;
+  &lt;span class=&quot;s1&quot;&gt;'post_type'&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'artist'&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// iterate through all the Artists after a single query&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;foreach&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$artist_query&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$artist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$artist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'ID'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// making queries inside of loops is baaaaaad news&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;$art_query&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get_posts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'numberposts'&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'post_type'&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'art'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'meta_key'&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'artist'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'meta_value'&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Looping through multiple large queries is going to slow down your page. Maybe you should just index those files yourself in some post meta and make things easier to find. Make a cron and keep things synchronized. If you’re getting fancy here, you might jump into the database itself with a &lt;code class=&quot;highlighter-rouge&quot;&gt;JOIN&lt;/code&gt;. It’s going to depend a lot on the size of your indexing lines, to be sure.&lt;/p&gt;
+
+&lt;h3 id=&quot;real-world-indexing-example&quot;&gt;Real world indexing example&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// start by iterating through all the Artists to set up the index&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$artists&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[];&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;foreach&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$all_artists&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$artist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$artist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'ID'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;$artists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'ID'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// then do the same with each piece of Art&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$art&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[];&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;foreach&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$all_art&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$work&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$work&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'ID'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;$art&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'ID'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;$art&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'artist_id'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get_field&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'artist'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// yeah, this was an ACF too&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// add only what you need from the Art CPT in the Artist array&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;$a_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$art&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'artist_id'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;is_array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$artists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$a_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'art'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$artists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$a_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'art'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;nv&quot;&gt;$work&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'post_title'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;i-digress&quot;&gt;I digress&lt;/h2&gt;
+&lt;p&gt;Once again, &lt;em&gt;you really don’t have to worry about all that optimization with a static site!&lt;/em&gt; It indexes and builds itself. Users will see all that automation like you did it by hand. These days static sites are even smart enough to know when you’re changing files, and do &lt;a href=&quot;https://jekyllrb.com/docs/configuration/incremental-regeneration/&quot;&gt;incremental builds&lt;/a&gt; which are smart enough to keep those complicated queries from slowing down your whole site build every time. You won’t waste time either.&lt;/p&gt;</content><author><name>Benji</name></author><category term="Tutorials" /><category term="WordPress" /><summary type="html">Sometimes you’re good at more than one type of thing. That’s OK, you’re human. We like to categorize things and study them logically to distinguish them from each other. We argue about definitions. We like tables. We like lists. We make Custom Types for everything.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/custom-food-types.svg" /><media:content medium="image" url="http://localhost:4000/assets/images/custom-food-types.svg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Wordpress is a Framework</title><link href="http://localhost:4000/wordpress-is-a-framework/" rel="alternate" type="text/html" title="Wordpress is a Framework" /><published>2020-06-20T00:00:00-04:00</published><updated>2020-06-20T00:00:00-04:00</updated><id>http://localhost:4000/wordpress-is-a-framework</id><content type="html" xml:base="http://localhost:4000/wordpress-is-a-framework/">&lt;p&gt;Lest it fall under the immense weight of my quick and witty Jamstack diatribes, it’s time I defend my dear friend WordPress from a most misleading misconception. WordPress is not simply a CMS. It might be &lt;em&gt;known&lt;/em&gt; for its prowess as a CMS, and modern tools might compare themselves to it, but it is much, much more.&lt;/p&gt;
+
+&lt;h2 id=&quot;but-what-is-a-cms&quot;&gt;But what is a CMS?&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;C&lt;/strong&gt;ontent &lt;strong&gt;M&lt;/strong&gt;anagement &lt;strong&gt;S&lt;/strong&gt;ystems are &lt;strong&gt;systems&lt;/strong&gt; to organize and deliver (&lt;strong&gt;manage&lt;/strong&gt;) the &lt;strong&gt;content&lt;/strong&gt; of your website in a way that makes sense to you as a business AND integrates with your web framework. That’s the base definition of a CMS: something that holds the data you need to make your website unique.&lt;/p&gt;
+
+&lt;p&gt;WordPress is called a CMS because it has a pretty powerful CMS built into it. It can process files, organize them, and do many things to them based on their type. Image files are stored in multiple different, optimized sizes for use in instances at their most convenient size. The directory which stores all of these things (let’s call them &lt;a href=&quot;https://en.wikipedia.org/wiki/Digital_asset&quot;&gt;assets&lt;/a&gt;) is pretty confusing to look at, but it is modifiable and it does its job well enough.&lt;/p&gt;
+
+&lt;h2 id=&quot;and-what-is-a-framework&quot;&gt;And what is a framework?&lt;/h2&gt;
+&lt;p&gt;A web &lt;strong&gt;framework&lt;/strong&gt; on the other hand is a well-known and documented system for deploying content, serving it, and dynamically modifying it. A short and completely unordered list of framework words you’ve probably heard before:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Angular, Django, Rails, CodeIgniter, React, Gatsby, Jekyll, Laravel, nodeJS, RedwoodJS, 11ty&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;There are front-end frameworks and full-stack frameworks and little tiny frameworks and big, custom frameworks, but they all basically &lt;em&gt;make your website happen&lt;/em&gt;. A framework doesn’t need an integrated CMS, but some frameworks have a bit of an opinion on how to store their media. It’s not uncommon.&lt;/p&gt;
+
+&lt;h2 id=&quot;wordpress-stores-your-assets-for-you&quot;&gt;WordPress stores your assets for you&lt;/h2&gt;
+&lt;p&gt;I said the &lt;code class=&quot;highlighter-rouge&quot;&gt;/media&lt;/code&gt; directory in WordPress is confusing to look at, because it is. But the the administrator console (WP-admin) is not. It has all.of.the.options. It has all.of.the.settings. It quickly becomes familiar, and it really hasn’t changed a lot in modern times.&lt;/p&gt;
+
+&lt;p&gt;Content Management Systems don’t need a graphical interface, and they don’t technically need to store your files. A CMS could be as simple as a JSON file. Some people use JSON files! Isn’t that techie of them. Can you use &lt;a href=&quot;http://tenorcms.com/&quot;&gt;this&lt;/a&gt;? I probably could, but I’m lazy. So I don’t.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;$schema&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;http://json-schema.org/draft-06/schema#&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;object&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;My Web Site&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;properties&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;pages&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;array&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Pages&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;items&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;object&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;properties&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;key&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;string&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Key&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;heading&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;string&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Heading&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;body&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;string&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Body&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;format&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;markdown&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;search_enabled&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;boolean&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Search Enabled&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;tags&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;array&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Tags&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;An array of tags&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;items&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+              &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;string&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;string&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;The SEO title of the page, for web crawlers&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;string&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;format&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;textarea&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;className&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;short&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;The SEO description of the page, for web crawlers&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;wordpress-generates-your-pages&quot;&gt;WordPress generates your pages&lt;/h2&gt;
+&lt;p&gt;By 2005, static web content in one file was slowly getting replaced by WYSIWYG editing. WYSIWYG editors are a sort of CMS, but they also translate your designs and content into HTML, or style it and place it on the page in special ways.&lt;/p&gt;
+
+&lt;p&gt;WordPress also became quite universally recognized for this! The base ‘content’ field of every WordPress page or post is a WYSIWYG content editor.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This is a terrible way to build pages in 2020…&lt;/p&gt;
+
+  &lt;p&gt;but it was very cool at the time.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;But these days WP developers use templates to make custom page styles. That’s a pretty baked-in and dynamic way to organize data. It’s much more complex than just preserving your content, it’s actually modifying your output.&lt;/p&gt;
+
+&lt;h2 id=&quot;wordpress-is-decently-opinionated&quot;&gt;WordPress is decently opinionated&lt;/h2&gt;
+&lt;p&gt;One of the great things about software development is ANYTHING IS POSSIBLE. Except that it’s not that great when you have to reopen a cobwebby legacy project that was developed 10 years ago.&lt;/p&gt;
+
+&lt;p&gt;There are many ways to do something, but a Framework tells you one recognized way to do it. WordPress is no different. The &lt;a href=&quot;https://developer.wordpress.org/reference/functions/&quot;&gt;WordPress documentation&lt;/a&gt; and &lt;a href=&quot;https://www.php.net/manual/en/langref.php&quot;&gt;PHP manual&lt;/a&gt; (which I reference quite often) have many specific and accepted ways to do something.&lt;/p&gt;
+
+&lt;p&gt;You &lt;em&gt;could&lt;/em&gt; build URL parameters by concatenating strings. You &lt;em&gt;could&lt;/em&gt; manipulate AJAX requests with JavaScript alone. But WordPress has idiomatic ways to do these things. When they’re used properly, those idioms become a part of your life. It never made sense to me that &lt;code class=&quot;highlighter-rouge&quot;&gt;$args&lt;/code&gt; was an appropriately specific name for an array of details to send through a query request. I didn’t think writing out &lt;code class=&quot;highlighter-rouge&quot;&gt;array()&lt;/code&gt; was necessary. Now I do it every time.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+  &lt;span class=&quot;s1&quot;&gt;'numberposts'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;s1&quot;&gt;'post_type'&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'muffins'&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$all_of_the_muffins&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get_posts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This indicates that WordPress is moderately &lt;em&gt;opinionated&lt;/em&gt; about how you should use its tooling. That’s not a CMS thing, that’s a Framework thing.&lt;/p&gt;
+
+&lt;h2 id=&quot;wordpress-knows-who-you-are&quot;&gt;WordPress knows who you are&lt;/h2&gt;
+&lt;p&gt;There are a number of other things that make WordPress much more than a CMS. For instance, a CMS doesn’t usually take pride in its authentication and user roles, and yet those are a thing that WordPress does. &lt;a href=&quot;https://ilikekillnerds.com/&quot;&gt;Dwayne Charrington&lt;/a&gt; does a decent job of explaining a these in &lt;a href=&quot;https://www.quora.com/Is-WordPress-a-PHP-framework/answer/Dwayne-Charrington&quot;&gt;this Quora answer&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Just because it’s marketed to business as a standardized and easy-to-use product, it’s entirely unfair to put WordPress in the CMS box.&lt;/p&gt;</content><author><name>Benji</name></author><category term="WordPress" /><category term="CMS" /><summary type="html">Lest it fall under the immense weight of my quick and witty Jamstack diatribes, it’s time I defend my dear friend WordPress from a most misleading misconception. WordPress is not simply a CMS. It might be known for its prowess as a CMS, and modern tools might compare themselves to it, but it is much, much more.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/framework.webp" /><media:content medium="image" url="http://localhost:4000/assets/images/framework.webp" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">WordPress Custom Fields but Free</title><link href="http://localhost:4000/jekyll-custom-fields/" rel="alternate" type="text/html" title="WordPress Custom Fields but Free" /><published>2020-06-13T00:00:00-04:00</published><updated>2020-06-13T00:00:00-04:00</updated><id>http://localhost:4000/jekyll-custom-fields</id><content type="html" xml:base="http://localhost:4000/jekyll-custom-fields/">&lt;p&gt;Cutting-edge web technologies don’t always document features. Either they lack the ability to convey the full scope of their power from the first release, or they release new features gradually after the MVP. That’s pretty much the opposite of the old guard of incredible WordPress plugins. A personal favorite static framework of mine is Jekyll, because it’s simple. But I guess it isn’t so simple after all.&lt;/p&gt;
+
+&lt;p&gt;Jekyll is known as a tool for making your blog. The &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;h1&amp;gt;&lt;/code&gt; on &lt;a href=&quot;https://jekyllrb.com&quot;&gt;jekyllrb.com&lt;/a&gt; is… uh, well, actually, it’s the Jekyll logo. But the hero text is “Transform your plain text into static websites and blogs.” Did you know you can make a blog with Jekyll? If not, perhaps you should reat about it:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Jekyll is built with Ruby, and is most often used for blogs and personal projects” –&lt;a href=&quot;https://www.netlify.com/blog/2016/05/02/top-ten-static-website-generators/&quot;&gt;Netlify&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“A simple, blog-aware, static site generator” –&lt;a href=&quot;https://www.staticgen.com/&quot;&gt;staticgen.com&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“It’s still great for what it’s great at—smaller websites, blogs and is widely used by e-commerce sites.” –&lt;a href=&quot;https://snipcart.com/blog/choose-best-static-site-generator&quot;&gt;Snipcart&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“This blog was made with Jekyll” –&lt;a href=&quot;https://www.monjibram.com&quot;&gt;Benji&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Learning all the things you can do with Jekyll is another subject entirely. Here’s a &lt;a href=&quot;https://jekyllrb.com/docs/liquid/&quot;&gt;single page of Jekyll’s official documentation&lt;/a&gt;. It is definitely not the Jekyll team’s finest moment. I can’t throw shade, the contributors are doing most of this for free after all! But how could I know that it does pretty much the same things I do at work on WordPress? I couldn’t. I didn’t.&lt;/p&gt;
+
+&lt;h2 id=&quot;meta-meta&quot;&gt;Meta-meta&lt;/h2&gt;
+&lt;p&gt;Metadata feels like a good place to start breaking the ‘blog’ idea. In WordPress the most popular metadata tool is called Advanced Custom Fields. ACF allows you to attach images, text, dates, even repeating and iterable internal groups, all within a single page template or custom post type. For each page that uses the template, you can fill in new metadata and create an entirely custom page – but with the same format and style. Hence the word &lt;code class=&quot;highlighter-rouge&quot;&gt;template&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Custom metadata is not terribly helpful on a blog. Blogs are mostly unique and custom &lt;em&gt;content&lt;/em&gt;. The data that surrounds that content is usually filled in with &lt;a href=&quot;https://en.wikipedia.org/wiki/Scaffold_(programming)&quot;&gt;scaffolding&lt;/a&gt;, which follows a lot of specific rules and is very well thought through. So sure, Jekyll has that stuff and it’s easy to understand, but you don’t need to make it. It’s already there.&lt;/p&gt;
+
+&lt;p&gt;If you’re coming from a WordPress background, you already know this. You also know you do need custom metadata when you’re making &lt;em&gt;pages&lt;/em&gt; for things.&lt;/p&gt;
+
+&lt;p&gt;And you can do that! Jekyll and many static site generators use &lt;a href=&quot;https://shopify.github.io/liquid/&quot;&gt;Liquid&lt;/a&gt; to provide metadata in markdown and HTML page &lt;em&gt;layouts&lt;/em&gt; (= templates) and page contents. For the purposes of this blog, it’s most often the variables with unique names that are stored on top of each page.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I used Liquid to fill in this blockquote.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;ACFs on WordPress are cool because you don’t really have to build everything in WYSIWYG (or write only blogs all day) to make a beautiful page. Liquid on Jekyll is cool because you don’t really have to read through any HTML to build a page. Let’s look at an example base layout template:&lt;/p&gt;
+
+&lt;h2 id=&quot;example-base_templatehtml&quot;&gt;Example: base_template.html&lt;/h2&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;lang=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;en-US&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  {% include header.html %}
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;section&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;main-grid&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      {% include nav.html %}
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;inner&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        Today I am talking about {{ page.fruit }}. I really {{ page.preference }} them, because they {{ page.action }} every time I hear about them. They only cost {{ page.cost }}
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;br&amp;gt;&lt;/span&gt;
+
+        So at the store:
+        {% for page in site.pages %}
+          {{ page.fruit }} cost {{ page.cost }}
+          {% unless forloop.last %}, {% endunless %}
+        {% endfor %}
+
+        {{ content }}
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;
+    {% include footer.html %}
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Liquid is being used in two ways here. It’s including other templates on the page with &lt;code class=&quot;highlighter-rouge&quot;&gt;{% include %}&lt;/code&gt; and it’s providing dynamic page metadata variables inside of mustachey brackets &lt;code class=&quot;highlighter-rouge&quot;&gt;{{ }}&lt;/code&gt;. Those brackets aren’t confined to page variables. One of the most common variables I use on this site is &lt;code class=&quot;highlighter-rouge&quot;&gt;{{ site.baseurl }}&lt;/code&gt; from &lt;code class=&quot;highlighter-rouge&quot;&gt;config.yml&lt;/code&gt;. But for the purposes of page-content, yes, you can have these things on each page!&lt;/p&gt;
+
+&lt;h2 id=&quot;setting-your-variables-on-the-page&quot;&gt;Setting your variables on the page&lt;/h2&gt;
+&lt;p&gt;Now you’ve got the &lt;strong&gt;&lt;em&gt;layout&lt;/em&gt;&lt;/strong&gt;, you can require it in the &lt;strong&gt;&lt;em&gt;front matter&lt;/em&gt;&lt;/strong&gt; of each page you want to set for that template. Front matter is written in yaml, so if you’ve ever written a docker file you’re already halfway there. Or… the other way around!&lt;/p&gt;
+
+&lt;h3 id=&quot;example-pagenamemd&quot;&gt;Example: pagename.md&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-md&quot; data-lang=&quot;md&quot;&gt;&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# the front matter is separated from rest of the document by three dashes on top and bottom&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;base_template&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# the html doc above&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;fruit&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;apples&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;preference&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;don't care about&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;make me fall asleep&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;cost&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;$5&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# you can put arrays here&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;coolstuff&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;backpack&lt;/span&gt;
+&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;sword of destiny&lt;/span&gt;
+&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mandarin oranges&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# you can even make associative arrays!? nuts&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;images&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;alt&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;copypasta&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/assets/images/spaghetti.png&lt;/span&gt;
+&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;alt&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;codesmells&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/assets/images/feet.png&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;link&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;https://www.monjibram.com/contact&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Contact Benji&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;_blank&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;black-button&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+
+Those arrows above are &lt;span class=&quot;gs&quot;&gt;**all of your dynamic data**&lt;/span&gt;. This markdown below will eventually be where the &lt;span class=&quot;sb&quot;&gt;`{{ content }}`&lt;/span&gt; variable is placed. But this section could also be blank.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;output&quot;&gt;Output:&lt;/h3&gt;
+&lt;p&gt;Today I am talking about apples. I really don’t care about them, because they make me fall asleep every time I hear about them. They only cost $5
+So at the store: apples cost $5, bananas cost $3, asian pears cost $15&lt;/p&gt;
+
+&lt;p&gt;Those arrows above are &lt;strong&gt;all of your dynamic data&lt;/strong&gt;. This markdown below will eventually be where the &lt;code class=&quot;highlighter-rouge&quot;&gt;{{ content }}&lt;/code&gt; variable is placed. But this section could also be blank.&lt;/p&gt;
+
+&lt;h2 id=&quot;templates-gonna-template&quot;&gt;Templates gonna template&lt;/h2&gt;
+&lt;p&gt;You can stamp out as many of these templates as you want. In the example above we made 3 pages (with apples, bananas, asian pears), evidenced by the iteration on the final section.&lt;/p&gt;
+
+&lt;p&gt;I cannot emphasize enough how exactly the same as WordPress post meta this is, because &lt;em&gt;it is post meta&lt;/em&gt;. A free CMS easily adds a graphical interface to the process for people who don’t want to deal in yaml, but the yaml itself is easy to read. &lt;a href=&quot;/jam-that-sucker/&quot;&gt;It’s not a reason for WordPress.&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusions&quot;&gt;Conclusions&lt;/h2&gt;
+&lt;p&gt;“Unique Custom Content” is such a big deal in SEO. A marketing site with 5 unique but beautiful (if visibly similar) pages is going to be highly optimized. Blogs aren’t the only page style (and certainly aren’t the most efficient) when you’re trying to build that custom product weight for search placement. Make the job easier: template out your custom page builds!&lt;/p&gt;</content><author><name>Benji</name></author><category term="Tutorials" /><summary type="html">Cutting-edge web technologies don’t always document features. Either they lack the ability to convey the full scope of their power from the first release, or they release new features gradually after the MVP. That’s pretty much the opposite of the old guard of incredible WordPress plugins. A personal favorite static framework of mine is Jekyll, because it’s simple. But I guess it isn’t so simple after all.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/automation.webp" /><media:content medium="image" url="http://localhost:4000/assets/images/automation.webp" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Learn AJAX: Part 2</title><link href="http://localhost:4000/ajax-part-2/" rel="alternate" type="text/html" title="Learn AJAX: Part 2" /><published>2020-06-05T08:06:00-04:00</published><updated>2020-06-05T08:06:00-04:00</updated><id>http://localhost:4000/ajax-part-2</id><content type="html" xml:base="http://localhost:4000/ajax-part-2/">&lt;p&gt;The universally supported base API for AJAX is called &lt;code class=&quot;highlighter-rouge&quot;&gt;XMLHttpRequest()&lt;/code&gt;. We often shorten that to &lt;code class=&quot;highlighter-rouge&quot;&gt;XHR&lt;/code&gt;. It is so very much harder for AJAX newcomers to grasp, mostly because the many parts of the HTTP request get separated out into separate pieces of the XHR. If you mess up any of those parts, you won’t have your data. People want their data. People should read this blog.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;This is Part 2 of a tutorial on the basics of AJAX, for beginners. You might want to start at &lt;a href=&quot;/ajax-part-1/&quot;&gt;Part 1&lt;/a&gt; if you haven’t already.&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Disclaimer!&lt;/strong&gt; &lt;em&gt;This article is for beginners, but it does assume a basic knowledge of HTTP’s structure. If you know the meaning of GET and POST, read on! Otherwise, I highly recommend going straight to the &lt;a href=&quot;https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods&quot;&gt;Wikipedia source&lt;/a&gt; and boning up.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;While I do expect you to know what HTTP requests are, I’m not expecting you to be familiar with our forefathers and their seminal work on making HTTP requests by hand with web servers. You are not (yet) that server gal 🧛‍♀️. You are not (yet) Richmond.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/blog/richmond.gif&quot; alt=&quot;An Ill Wind is Blowing&quot; title=&quot;You might not even know who he is.&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;curl-is-really-capitalized-like-that&quot;&gt;cURL is Really Capitalized Like That&lt;/h2&gt;
+&lt;p&gt;In the beginning, there was a thing called cURL. It underpins a lot of HTTP requests from languages like PHP. It still exists, and it’s used in many places. Part of it is worth explaining here, but the rest can always be found &lt;a href=&quot;https://curl.haxx.se/docs/httpscripting.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;cURL is cool because it’s a playground for talking to the internet without a GUI. It can be used as a command line tool, and it lets you build custom HTTP requests from your terminal! cURL is a good place to learn about HTTP, which you already know, right? I hope so.&lt;/p&gt;
+
+&lt;p&gt;For each section of an HTTP request, cURL has an option. There are naturally many options. They are grouped by type, like &lt;code class=&quot;highlighter-rouge&quot;&gt;headers&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;cookies&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;urls&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;post-types&lt;/code&gt;, and &lt;code class=&quot;highlighter-rouge&quot;&gt;ports&lt;/code&gt;. There are many defaults, but it’s common to need to set more than one of these before executing the actual request. It’s similar in XHR.&lt;/p&gt;
+
+&lt;h2 id=&quot;but-first-you-must-instantiate&quot;&gt;But First, You Must Instantiate!&lt;/h2&gt;
+&lt;p&gt;In my opinion, XHR is the closest thing that old-timey JavaScript can have to a class. It has a lot of sensitive settings, and there can be more than one at a time, so the first thing you’ll do is use the &lt;code class=&quot;highlighter-rouge&quot;&gt;XMLHttpRequest()&lt;/code&gt; cookie cutter and stamp out a new Object.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;xhr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;XMLHttpRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;                   &lt;span class=&quot;c1&quot;&gt;// assign this to a variable to instantiate it&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;xhr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;POST&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;yoururl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;something&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// request-type, url, async (true/false)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;tell-it-what-you-want&quot;&gt;Tell It What You Want&lt;/h2&gt;
+&lt;p&gt;The next part of a POST request will often require specific headers. It’s possible and common to use these headers to set encoded OAuth keys and values into the request to open up gateways with APIs. It’s also common to use headers to define your data. You know, normal HTTP header things go here. Naturally, this must always be done &lt;em&gt;after&lt;/em&gt; you &lt;code class=&quot;highlighter-rouge&quot;&gt;.open()&lt;/code&gt; your request and &lt;em&gt;before&lt;/em&gt; you &lt;code class=&quot;highlighter-rouge&quot;&gt;.send()&lt;/code&gt; it.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;xhr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setRequestHeader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Content-Type&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;application/json&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// What was that .... you wanted more than one header field? Easy, do it as many times as you need:&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;xhr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setRequestHeader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Cookie&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;siteName=Monjibram&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;xhr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setRequestHeader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Referer&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;https://www.monjibram.com&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;make-it-an-event&quot;&gt;Make It An Event&lt;/h2&gt;
+&lt;p&gt;Your response is now today years old! But what happens when it grows up, travels the world, and returns home? You can set your event handler next, with any callbacks you need.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;xhr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onreadystatechange&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// in plain English: if the request is finished and it received a 200 status&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;readyState&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;XMLHttpRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;DONE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;status&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// Request finished. Process asynchronously from here with a callback.&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// There could be a multitude of reasons that something failed. Error log here.&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;wrap-things-up&quot;&gt;Wrap Things Up&lt;/h2&gt;
+&lt;p&gt;All that to send some &lt;code class=&quot;highlighter-rouge&quot;&gt;formData&lt;/code&gt;. If you recall from &lt;a href=&quot;/ajax-part-1/&quot;&gt;Part 1&lt;/a&gt;, we were attempting to AJAX this wee little form:&lt;/p&gt;
+
+&lt;form onsubmit=&quot;validateAndAjax(event)&quot; style=&quot;padding-bottom: 30px;&quot;&gt;
+  &lt;input id=&quot;email&quot; type=&quot;email&quot; placeholder=&quot;Email!&quot; /&gt;
+  &lt;input id=&quot;submit&quot; type=&quot;submit&quot; value=&quot;Submit!&quot; /&gt;
+&lt;/form&gt;
+
+&lt;p&gt;Of course you’re welcome to send any sort of data string you please via HTTP. With the &lt;code class=&quot;highlighter-rouge&quot;&gt;URLSearchParams()&lt;/code&gt; API you can even transform JSON and JS Objects into useful parameters.&lt;/p&gt;
+
+&lt;p&gt;Whatever happens, you’re now ready to send that little form’s contents out into the big, big world. Give it the boot with &lt;code class=&quot;highlighter-rouge&quot;&gt;.send()&lt;/code&gt;. If this were a GET request, &lt;code class=&quot;highlighter-rouge&quot;&gt;.send()&lt;/code&gt; would accept the parameters on the url you’re looking to pull from. It can also accept &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;params&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;URLSearchParams&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Benji&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// and more&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;lt;3&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;// and more&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;baz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;AJAX&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// and more!&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;xhr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;examples-of-xhr-with-get-and-post&quot;&gt;Examples of XHR with GET and POST&lt;/h2&gt;
+&lt;h3 id=&quot;post&quot;&gt;POST&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;xhr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;XMLHttpRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;xhr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;POST&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;yoururl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;something&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;xhr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setRequestHeader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Content-Type&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;application/json&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;xhr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onreadystatechange&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// in plain English: if the request is finished and it received a 200 status&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;readyState&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;XMLHttpRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;DONE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;status&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// Request finished. Process asynchronously from here with a callback.&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// There could be a multitude of reasons that something failed. Error log here.&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;params&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;URLSearchParams&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Benji&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// and more&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;lt;3&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;// and more&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;baz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;AJAX&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// and more!&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;xhr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;get&quot;&gt;GET&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;https://feed.podbean.com/covertocredits/feed.xml&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;xhr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;XMLHttpRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;xhr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;GET&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;xhr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onreadystatechange&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;xhr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;readyState&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;xhr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;status&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;xhr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;responseText&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;nx&quot;&gt;podcastAttributes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;xhr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;responseXML&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementsByTagName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+                &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;podcastAttributes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Failed to receive RSS file from the server - file not found.&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Error code &lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;xhr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;status&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; received: &lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;xhr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;statusText&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;xhr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;a-short-rant&quot;&gt;A Short Rant&lt;/h2&gt;
+&lt;p&gt;This was the way I think you should learn about XHR. After jQuery, and before Fetch and Axios.&lt;/p&gt;
+
+&lt;p&gt;On the other hand, &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/&quot;&gt;this is how Mozilla thinks you should learn XHR&lt;/a&gt;. There are no base examples, only a long list of properties and methods. Navigating to &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest&quot;&gt;Using XHR&lt;/a&gt; is a real doozy. It contains no single example of a POST request, but instead jumps off on a multi-section tangent about recreating native form submissions. I usually highly recommend the Moz Docs, but in this case you should approach with caution.&lt;/p&gt;
+
+&lt;h2 id=&quot;next-time&quot;&gt;Next Time…&lt;/h2&gt;
+&lt;p&gt;We’ve completed the average jQuery AJAX request, and followed through the base XHR request, but two modern AJAX-friendly APIs have been integrated in modern front-end frameworks. The basics of Axios and Fetch will round out our triad of beginner tutorials on asynchronous JavaScript calls.&lt;/p&gt;</content><author><name>Benji</name></author><category term="Tutorials" /><summary type="html">The universally supported base API for AJAX is called XMLHttpRequest(). We often shorten that to XHR. It is so very much harder for AJAX newcomers to grasp, mostly because the many parts of the HTTP request get separated out into separate pieces of the XHR. If you mess up any of those parts, you won’t have your data. People want their data. People should read this blog.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/ajax-bottle2.webp" /><media:content medium="image" url="http://localhost:4000/assets/images/ajax-bottle2.webp" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">An Ode to the Object</title><link href="http://localhost:4000/associative-arrays-make-me-happy/" rel="alternate" type="text/html" title="An Ode to the Object" /><published>2020-06-01T08:09:00-04:00</published><updated>2020-06-01T08:09:00-04:00</updated><id>http://localhost:4000/associative-arrays-make-me-happy</id><content type="html" xml:base="http://localhost:4000/associative-arrays-make-me-happy/">&lt;p&gt;Let’s talk about my best friend, &lt;strong&gt;J&lt;/strong&gt;ava&lt;strong&gt;S&lt;/strong&gt;cript &lt;strong&gt;O&lt;/strong&gt;bject &lt;strong&gt;N&lt;/strong&gt;otation. You probably call that &lt;strong&gt;&lt;em&gt;jay&lt;/em&gt;&lt;/strong&gt;-son. If you’re really particular or feeling a little bit French, maybe you call it jase-&lt;strong&gt;&lt;em&gt;on&lt;/em&gt;&lt;/strong&gt;. Whichever way you call it, you’re &lt;em&gt;almost&lt;/em&gt; talking about an associative array.&lt;/p&gt;
+
+&lt;p&gt;JSON is cool because it helps me to organize my thoughts and store them. Or maybe somebody else’s thoughts. Or maybe dynamically generated thoughts. Whatever I want really. If I have a dataset I’d prefer it to come on over in JSON format, so I can make sense of it right away.&lt;/p&gt;
+
+&lt;p&gt;It’s also cool because it sounds like ‘Jason’, so people (including me) often intentionally use it when they’re discussing JavaScript Objects. Talking about Object-Oriented Programming (OOP) quickly turns into a whole thing about how awesome Objects are in many other ways. When I say JSON, you immediately know that I’m thinking about associative and iterable data and I’m not going to talk you to sleep about inheritance and scope. Not this time. Hey, wake up.&lt;/p&gt;
+
+&lt;p&gt;I’m going to primarily reference JavaScript here but because an [associative array / map / symbol table / dictionary] is an &lt;a href=&quot;https://en.wikipedia.org/wiki/Abstract_data_type&quot;&gt;abstract data type&lt;/a&gt;, we could happily discuss this in all of the languages. But not all of the languages are cool enough to tie this to their basic Object structure, nor to have catchy, human-sounding names for things.&lt;/p&gt;
+
+&lt;!-- ![Yes, all of them](/assets/images/blog/all-the-things.png &quot;Yes, all of them.&quot;) --&gt;
+
+&lt;h2 id=&quot;here-are-some-languages&quot;&gt;Here are some languages.&lt;/h2&gt;
+
+&lt;h3 id=&quot;a-ruby-hash&quot;&gt;a Ruby Hash&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-rb&quot; data-lang=&quot;rb&quot;&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'dog'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'canine'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cat'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'feline'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'donkey'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'asinine'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'dodecine'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;but&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;you&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;can&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;also&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;symbols&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;dog: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'canine'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;cat: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'feline'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;donkey: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'asinine'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'dodecine'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;a-python-dict&quot;&gt;a Python Dict&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-py&quot; data-lang=&quot;py&quot;&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'dog'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'canine'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'cat'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'feline'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'donkey'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'asinine'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'dodecine'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;a-php-array&quot;&gt;a PHP Array&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'dog'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'canine'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cat'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'feline'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'donkey'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'asinine'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'dodecine'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;a-javascript-object&quot;&gt;a JavaScript Object&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;dog&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;canine&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;cat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;feline&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;donkey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;asinine&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;dodecine&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// but you're probably going to see it spread out like this&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;dog&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;canine&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;cat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;feline&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+  &lt;span class=&quot;na&quot;&gt;donkey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;asinine&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+  &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;dodecine&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;a-json&quot;&gt;a JSON&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// that's a string!!&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;{dog: 'canine', cat: 'feline', donkey: 'asinine', 12: 'dodecine'}&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// that's not a string!!&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;anObject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Well, that all looks almost the same. I don’t want to get into why there are different names in each, and I don’t want to talk about all of the little differences between languages, but it’s cool to note that your everyday Object in JS is an associative array (and vice versa).&lt;/p&gt;
+
+&lt;p&gt;It’s also really important to carefully observe the difference between a JS Object and JSON. The name shouldn’t surprise you that JSON is the &lt;em&gt;string notation&lt;/em&gt; of your associative array. It’s a string, and most of its superpowers are not unlocked until you use &lt;code class=&quot;highlighter-rouge&quot;&gt;JSON.parse(yourJSON)&lt;/code&gt; to convert that carefully confected data-tree into an Object. And if you want it back to JSON, you can always &lt;code class=&quot;highlighter-rouge&quot;&gt;JSON.stringify(yourObject)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;You are likely going to be pushing something toward a JS-based front-end, and you are likely going to be translating whichever associative array you choose into JSON at some point. And don’t worry about translating it either, because whatever language you’re using has some function like &lt;code class=&quot;highlighter-rouge&quot;&gt;to_json()&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;json_encode()&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;talk_js_to_me()&lt;/code&gt; that will make it JSON immediately or slightly sooner than that.&lt;/p&gt;
+
+&lt;p&gt;Even stranger, at RANDOM TIMES I REGARD AS MAGIC, sometimes jQuery parses your JSON to a JS Object automatically ✨. The most standard and known time this happens is &lt;a href=&quot;/ajax-part-1/&quot;&gt;jQuery AJAX&lt;/a&gt;. When the MIME-type &lt;code class=&quot;highlighter-rouge&quot;&gt;data-JSON&lt;/code&gt; is in an HTTP header, jQuery will assume you are wanting that data, and help you to get it right now.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// Oh, isn't it sweet! The AJAX method itself takes an Object.&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ajax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;yoursite.com/data.json&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;dataType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;JQ also sometimes parses JSON when you’re dealing with HTML data attributes. And it sometimes does this for no reason at all. I promise. There are tiny gnomes living in your computer that make things happen.&lt;/p&gt;
+
+&lt;p&gt;That makes the most famous and important JS debugging tool &lt;code class=&quot;highlighter-rouge&quot;&gt;console.log()&lt;/code&gt; important when things go wrong. If your output is showing &lt;code class=&quot;highlighter-rouge&quot;&gt;[object Object]&lt;/code&gt; you’ve gone and printed an Object. You need to &lt;code class=&quot;highlighter-rouge&quot;&gt;JSON.stringify()&lt;/code&gt; it. If you’re getting empty brackets &lt;code class=&quot;highlighter-rouge&quot;&gt;{}&lt;/code&gt; you might have over-parsed it. Modern browser consoles will happily output things that make this easier on you:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;anObject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;dog&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;canine&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;cat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;feline&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;donkey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;asinine&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;dodecine&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;selector&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;a-php-array&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;anObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;          &lt;span class=&quot;c1&quot;&gt;// logs: Object { 12: &quot;dodecine&quot;, dog: &quot;canine&quot;, cat: &quot;feline&quot;, donkey: &quot;asinine&quot; }&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;innerHTML&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;anObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// outputs [object Object]&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;aJson&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stringify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;anObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;aJson&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;             &lt;span class=&quot;c1&quot;&gt;// logs: {&quot;12&quot;:&quot;dodecine&quot;,&quot;dog&quot;:&quot;canine&quot;,&quot;cat&quot;:&quot;feline&quot;,&quot;donkey&quot;:&quot;asinine&quot;}&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;innerHTML&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;aJson&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// outputs {&quot;12&quot;:&quot;dodecine&quot;,&quot;dog&quot;:&quot;canine&quot;,&quot;cat&quot;:&quot;feline&quot;,&quot;donkey&quot;:&quot;asinine&quot;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;overStrung&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stringify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;aJson&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; 
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;overStrung&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;         &lt;span class=&quot;c1&quot;&gt;// logs: &quot;{\&quot;12\&quot;:\&quot;dodecine\&quot;,\&quot;dog\&quot;:\&quot;canine\&quot;,\&quot;cat\&quot;:\&quot;feline\&quot;,\&quot;donkey\&quot;:\&quot;asinine\&quot;}&quot;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;innerHTML&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;overStrung&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// outputs &quot;{\&quot;12\&quot;:\&quot;dodecine\&quot;,\&quot;dog\&quot;:\&quot;canine\&quot;,\&quot;cat\&quot;:\&quot;feline\&quot;,\&quot;donkey\&quot;:\&quot;asinine\&quot;}&quot;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;overParsed&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;aJson&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// SyntaxError: JSON.parse: unexpected character at line 1 column 2 of the JSON data&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;i-digress&quot;&gt;I digress.&lt;/h2&gt;
+&lt;p&gt;But hey, I’m excited to shout from the rooftops that JSON is my &lt;em&gt;main groovy thing of the moment&lt;/em&gt;. JSON does so many of the things I want it to do. It doesn’t hurt that parsed JS&lt;strong&gt;O&lt;/strong&gt;N can become an &lt;strong&gt;Object&lt;/strong&gt;. So I can use it in fancy ways, really any ways, and it reacts like I expect.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;someJson&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;{ pig: 'ig-pay', latin: 'atin-lay' }&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;someObject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;someJson&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;someObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;pig&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// logs 'ig-pay'&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;someObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;// also logs 'ig-pay'&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;someObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;ine-sway&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;someObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;// now logs 'ine-sway'&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;That means I can use this to do some weird things. I was making a game somewhat like this:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// I'm gonna straight up make an Object here.&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;settings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;scoreMultiplier&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;40&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;timeLimit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;360&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;charName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;MegaMan&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;23043&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;timeRemaining&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;percentComplete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;40&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;inventory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;backpack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;swordOfDestiny&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;toothbrush&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;selectors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;#left&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;           &lt;span class=&quot;c1&quot;&gt;// these are&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;.rightArrowDiv&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// getting increasingly&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;shoot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;#shooter&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;      &lt;span class=&quot;c1&quot;&gt;// less realistic&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;woah-wait-a-second&quot;&gt;Woah wait a second…&lt;/h3&gt;
+&lt;p&gt;Yeah that last one took me a little while to figure out. The JQuery object &lt;code class=&quot;highlighter-rouge&quot;&gt;$('#shooter')&lt;/code&gt; is just another object inside of the Object. So I could potentially just implement this variable after the document is ready, hope it doesn’t change, and treat it like the selector itself:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;game&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;selectors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;shoot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;click&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;boom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Or maybe I just have a bazillion selectors and I’m keeping track of them in some new way:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// a real test I did on this page:&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;thing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;a-ruby-hash&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;notherThing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;a-python-dict&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;notherThing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;everything-is-objects&quot;&gt;Everything is Objects!&lt;/h2&gt;
+&lt;p&gt;Hurray Objects! Life is fun again, water tastes sweet, the sun is shining, I can choose to ignore OOP principals and data storage methods and just pour all of my data into a &lt;code class=&quot;highlighter-rouge&quot;&gt;stringify&lt;/code&gt;able Object. But that Object is also an associative array. I can do all of the important array things, like &lt;strong&gt;iterate&lt;/strong&gt; 🦹‍♂️&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;jsObject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;dog&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;canine&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;cat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;feline&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;donkey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;asinine&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;dodecine&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;jsObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;jsObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;That’s pretty much how I made &lt;a href=&quot;/blog/&quot;&gt;this blog index&lt;/a&gt;. I was using Ruby at the time, but it is a very common part of my day-to-day.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-rb&quot; data-lang=&quot;rb&quot;&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;paginator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;total_pages&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;# start thinking about pages of results&lt;/span&gt;
+ &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;paginator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;previous_page&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# link to previous page&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# don't&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;endif&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;page&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;paginator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;total_pages&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# go through each page as `page` and do this&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;page&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;paginator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;page&lt;/span&gt; 
+      &lt;span class=&quot;c1&quot;&gt;# show the page but don't link, because it's this page&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;elsif&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;page&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;# link to the first page&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; 
+      &lt;span class=&quot;c1&quot;&gt;# link to the other pages&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;endif&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;endfor&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;paginator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;next_page&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# link to the next page&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# don't&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;endif&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;endif&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;hide-json-everywhere&quot;&gt;Hide JSON Everywhere&lt;/h2&gt;
+&lt;p&gt;Iterating over things is so useful when you’re storing data in HTML. Using JS data attributes is also a good place to store JSON for later.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// jQuery&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;#mydiv&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;data-json&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;myJson&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// set&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;json&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;#mydiv&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;// retrieve&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Vanilla&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;selector&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;mydiv&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;json&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;myJson&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;// set&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;json&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;      &lt;span class=&quot;c1&quot;&gt;// retrieve&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;You can store it visibly on the HTML as well. But &lt;strong&gt;&lt;em&gt;make sure you surround it in single quotes!&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'mydiv'&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-json=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'{thing: &quot;that was one thing&quot;, other: &quot;and this was another&quot;}'&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;Just like that ^^&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;so-there-you-have-it&quot;&gt;So there you have it&lt;/h2&gt;
+&lt;p&gt;JSON is cool. You’ll benefit by using it from time to time. Or all the time. That JSON is a cool guy. And there’s going to be a separate blog about data attributes. Because it needs to be explained, and I write blogs! That feels like a separate discussion. Check back soon.&lt;/p&gt;</content><author><name>Benji</name></author><category term="Tutorials" /><summary type="html">Let’s talk about my best friend, JavaScript Object Notation. You probably call that jay-son. If you’re really particular or feeling a little bit French, maybe you call it jase-on. Whichever way you call it, you’re almost talking about an associative array.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/hash.webp" /><media:content medium="image" url="http://localhost:4000/assets/images/hash.webp" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Pay for Web Development</title><link href="http://localhost:4000/why-you-should-pay-a-developer/" rel="alternate" type="text/html" title="Pay for Web Development" /><published>2020-05-17T08:09:00-04:00</published><updated>2020-05-17T08:09:00-04:00</updated><id>http://localhost:4000/why-you-should-pay-a-developer</id><content type="html" xml:base="http://localhost:4000/why-you-should-pay-a-developer/">&lt;p&gt;My first ‘official’ web project was for an old friend, a successful musician with a 5-year-old single page with some links. I was so confident in my delivery that I told him I’d do the project for free! This is bad business, but it wasn’t the worst part. After hours and hours of collaborative design ideation and development, &lt;em&gt;he went out and bought a subscription to a site generator&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Every developer you know has a similar story. There’s something ephemeral and subjective about web design and development. It’s not a physical product that you can be proud to walk home with, and the difference between success and failure feels technical and difficult to quantify.
+&lt;!-- It's usually when a client asks why they should pay for a custom site when other options are out there for $50 a month. --&gt;&lt;/p&gt;
+
+&lt;p&gt;It probably feels like that because small businesses are &lt;a href=&quot;http://paulgraham.com/ds.html&quot;&gt;long-term investments&lt;/a&gt;, and the impacts of marketing &lt;a href=&quot;https://www.sprk-d.com/blog/how-long-does-it-really-take-for-content-marketing-to-work&quot;&gt;don’t increase revenue immediately&lt;/a&gt;. There are actually plenty of ways to show how better development affects your business. I’ll list a few here.&lt;/p&gt;
+
+&lt;h2 id=&quot;time&quot;&gt;Time&lt;/h2&gt;
+
+&lt;p&gt;This is the most easily quantifiable value when it comes to your site. A quick search will tell you that 0.9 seconds will slice off &lt;a href=&quot;https://www.cloudflare.com/learning/performance/more/website-performance-conversion-rates/&quot;&gt;&lt;em&gt;a quarter&lt;/em&gt; of your user conversion rates&lt;/a&gt;. But skimming 0.9 seconds is rarely straightforward. Here’s a short list of custom troubleshooting thoughts that a web developer naturally has when it comes to speed:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Server calls&lt;/li&gt;
+  &lt;li&gt;Server allocation&lt;/li&gt;
+  &lt;li&gt;Caching: server-side and browser-side&lt;/li&gt;
+  &lt;li&gt;Session maintenance&lt;/li&gt;
+  &lt;li&gt;Content Delivery Networks&lt;/li&gt;
+  &lt;li&gt;Enqueuing and script bloat&lt;/li&gt;
+  &lt;li&gt;Browser support&lt;/li&gt;
+  &lt;li&gt;Webpacking, autoprefixing, and minification&lt;/li&gt;
+  &lt;li&gt;Limited redirection&lt;/li&gt;
+  &lt;li&gt;Image Optimization&lt;/li&gt;
+  &lt;li&gt;Preloading&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sure, we developers think of all of these things on almost every site, but the true beauty of custom web development is that it’s straight up impossible to match all of that customization with a website generator. The premise alone means your site will be built on a server, with inevitable work-arounds for pre-compiling the styles you choose to your specifications.&lt;/p&gt;
+
+&lt;p&gt;That’s one of the reasons I say &lt;a href=&quot;/jam-that-sucker/&quot;&gt;WordPress probably isn’t for you&lt;/a&gt;. A big, multi-tool site is naturally going to be slower and clunkier.&lt;/p&gt;
+
+&lt;h2 id=&quot;accessibility&quot;&gt;Accessibility&lt;/h2&gt;
+
+&lt;p&gt;The common consensus is that 20% of people who use the internet have a form of disability. The most common accessibility issues come from mouse use and visibility. Without tools for screen readers and proper mapping and organization, your site will literally stop a fifth of your viewers from accessing the content.&lt;/p&gt;
+
+&lt;p&gt;Building a properly accessible site is notoriously difficult. Go to a site like &lt;a href=&quot;https://www.amazon.com&quot; target=&quot;_blank&quot;&gt;Amazon&lt;/a&gt; and try to navigate with only your keyboard. Now go to your favorite blog and try it. This level of accessibility and site architecture &lt;em&gt;requires&lt;/em&gt; a tailored approach.&lt;/p&gt;
+
+&lt;h2 id=&quot;money&quot;&gt;Money&lt;/h2&gt;
+
+&lt;p&gt;This blog started when that developer’s friend said “but why does it cost more than [WYSIWYG site generator].” But your long term costs will actually shrink when you do the job right the first time. Site generating services intentionally charge an extra few dollars more per month. They’re in it for the long game.&lt;/p&gt;
+
+&lt;p&gt;Compound that with licensed code that you may not reuse or download. Proprietary domain names that you can’t take with you. And generally terrible migrations. Check the fine print before you sign! It’s like renting an apartment - you’re not allowed to take it with you when you leave.&lt;/p&gt;
+
+&lt;p&gt;There are degrees of separation to be sure. Want a cheap site? Hire a new developer! But be forewarned: make sure that even that budget developer knows what she or he is doing. Development consultants charge incredibly high premiums for ‘cave dives’ into other developers’ code. Cheap code &lt;a href=&quot;https://en.wikipedia.org/wiki/Code_smell&quot;&gt;smells&lt;/a&gt; like bigger problems.&lt;/p&gt;
+
+&lt;h2 id=&quot;your-seongsu-style&quot;&gt;Your “Seongsu Style”&lt;/h2&gt;
+
+&lt;p&gt;When I was doing a very different kind of program development in Seoul, South Korea, I had the opportunity to work directly with a few of the country’s best interior designers and architects. They walked into hollow shells of construction sites and saw things that noone else could see. They came back with plans that brought out the best parts of a space. Everything they did seemed so … apparent! But without them it would have never been done.&lt;/p&gt;
+
+&lt;p&gt;You are a unique individual, with a unique business. Highlighting your value and talent is a web developer’s job. It might make perfect sense after it’s all done, but it took work and experience. The addage goes something like this: “You’re only paying me for 5 hours, but you’re asking me for 5 years’ experience.”&lt;/p&gt;
+
+&lt;p&gt;And there’s going to be something you want to change, just the eensiest, tiniest bit. If you haven’t contracted someone who can smooth that out, that little thing is going to bother you every time you visit your own site.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Remember, you will be your site’s top visitor. It’s about you after all!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;were-not-only-here-for-the-main-project&quot;&gt;We’re Not Only Here for the Main Project&lt;/h2&gt;
+
+&lt;p&gt;Hiring a professional to design and develop will make a huge difference in the lasting success of your site. It’s faster, more accessible, and often a more accurate representation of your business needs and goals.&lt;/p&gt;
+
+&lt;p&gt;Every situation is unique, and the choice is a major one. It’s a big decision, and one you need to make with all the facts. If you’re on the fence about it, &lt;a href=&quot;/contact/&quot;&gt;hire a consult&lt;/a&gt;! The fee for a recommendation will be significantly cheaper than the cost of fixing a mistake.&lt;/p&gt;</content><author><name>Benji</name></author><category term="Site&amp;nbsp;Generators" /><summary type="html">My first ‘official’ web project was for an old friend, a successful musician with a 5-year-old single page with some links. I was so confident in my delivery that I told him I’d do the project for free! This is bad business, but it wasn’t the worst part. After hours and hours of collaborative design ideation and development, he went out and bought a subscription to a site generator.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/code.webp" /><media:content medium="image" url="http://localhost:4000/assets/images/code.webp" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

@@ -1,0 +1,31 @@
+<section class='contact'>
+  <div class='container-medium'>
+    <div class='left'>
+      {% if page.title == "Contact" %}
+        <h1 class='title'>{{ site.data.contact.title }}</h1>
+      {% else %}
+        <h2 class='title'>{{ site.data.contact.title }}</h2>
+      {% endif %}
+      <div class='blurb'>{{ site.data.contact.blurb }}</div>
+    </div>
+    <div class='right'>
+      <form action=''>
+        {% for input in site.data.contact.form.inputs %}
+          <input class="{{ input.width }}" type='{{ input.type }}' name="{{ input.name }}" placeholder="{{ input.placeholder }}" autocomplete="{{ input.autocomplete }}">
+        {% endfor %}
+        {% for select in site.data.contact.form.selects %}
+          <select name='{{ select.name }}' class='{{ select.width }}'>
+            <option value='' disabled selected>{{ select.placeholder }}</option>
+            {% for option in select.options %}
+              <option value='{{ option }}'>{{ option }}</option>
+            {% endfor %}
+          </select>
+        {% endfor %}
+        {% for textarea in site.data.contact.form.textareas %}
+          <textarea name='{{ textarea.name }}' class='{{ textarea.width }}' placeholder="{{ textarea.placeholder }}"></textarea>
+        {% endfor %}
+        <input type='submit' value='Submit' class='submit'>
+      </form>
+    </div>
+  </div>
+</section>

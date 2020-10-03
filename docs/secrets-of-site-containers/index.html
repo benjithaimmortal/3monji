@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+  
+  <meta charset="utf-8">
+
+  <!-- favicons -->
+  <link rel="apple-touch-icon"      sizes="57x57"   href="/assets/images/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon"      sizes="60x60"   href="/assets/images/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon"      sizes="72x72"   href="/assets/images/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon"      sizes="76x76"   href="/assets/images/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon"      sizes="114x114" href="/assets/images/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon"      sizes="120x120" href="/assets/images/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon"      sizes="144x144" href="/assets/images/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon"      sizes="152x152" href="/assets/images/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon"      sizes="180x180" href="/assets/images/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32"   href="/assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96"   href="/assets/images/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16"   href="/assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest"                              href="/assets/images/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/images/favicon/ms-icon-144x144.png">
+  <meta name="theme-color"             content="#ffffff">
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+  
+
+  <!-- force mobile to use mobile viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Secrets of the Site Container: Part 1 | Monjibram</title>
+<meta name="generator" content="Jekyll v4.0.1" />
+<meta property="og:title" content="Secrets of the Site Container: Part 1" />
+<meta name="author" content="Benji" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Big screens are getting bigger. Wider. Less expensive. Our web experience should be seamless, but our eyes can’t adjust to giant blobby things. Containers to the rescue. But first, a digression about font-size and readability!" />
+<meta property="og:description" content="Big screens are getting bigger. Wider. Less expensive. Our web experience should be seamless, but our eyes can’t adjust to giant blobby things. Containers to the rescue. But first, a digression about font-size and readability!" />
+<link rel="canonical" href="http://localhost:4000/secrets-of-site-containers/" />
+<meta property="og:url" content="http://localhost:4000/secrets-of-site-containers/" />
+<meta property="og:site_name" content="Monjibram" />
+<meta property="og:image" content="http://localhost:4000/assets/images/containers.webp" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-07-24T00:00:00-04:00" />
+<meta name="google-site-verification" content="OTG5c_uywRHQgQpvdcwgCYY02h8ofndgJq_kGPt1l_I" />
+<script type="application/ld+json">
+{"description":"Big screens are getting bigger. Wider. Less expensive. Our web experience should be seamless, but our eyes can’t adjust to giant blobby things. Containers to the rescue. But first, a digression about font-size and readability!","@type":"BlogPosting","image":"http://localhost:4000/assets/images/containers.webp","url":"http://localhost:4000/secrets-of-site-containers/","headline":"Secrets of the Site Container: Part 1","dateModified":"2020-07-24T00:00:00-04:00","datePublished":"2020-07-24T00:00:00-04:00","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/images/Benji.jpg"},"name":"Benji"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/secrets-of-site-containers/"},"author":{"@type":"Person","name":"Benji"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <meta property="og:type"             content="website" />
+  <meta property="og:image:type"       content="image/jpeg" />
+  <meta property="og:image:alt"        content="Benjamin Kostenbader" />
+</head>
+  <body>
+    <div class='bar'>
+  <a href='/' class='logo'>
+    <svg width="90px" height="47px" viewBox="0 0 90 47">
+      <g class="full-logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M4.12470513,7.7974 C2.11314103,7.7974 0.482551282,6.1239 0.482551282,4.0594 C0.482551282,1.9954 2.11314103,0.3219 4.12470513,0.3219 L14.9776026,0.3219 C16.9891667,0.3219 18.6197564,1.9954 18.6197564,4.0594 C18.6197564,6.1239 16.9891667,7.7974 14.9776026,7.7974 L4.12470513,7.7974 Z" class="toggleBackground" fill-opacity="0.4" fill="#D42C41" mask="url(#mask-2)" transform="translate(71.000000, 0.918367)"></path>
+        <path d="M72.132849,7.89676344 C71.3772704,7.2155381 71,6.38261723 71,5.39706442 C71,4.41151162 71.3772704,3.58514549 72.132849,2.91843423 C72.8873897,2.25172298 73.8432797,1.91836735 75,1.91836735 C76.1567203,1.91836735 77.1120913,2.25172298 77.867151,2.91843423 C78.6216917,3.58514549 79,4.41151162 79,5.39706442 C79,6.41164539 78.6216917,7.25158921 77.867151,7.91830046 C77.1120913,8.58547991 76.1567203,8.91836735 75,8.91836735 C73.8432797,8.91836735 72.8873897,8.57798878 72.132849,7.89676344 Z" class="toggle-dot" fill="#D42C41"></path>
+        <path d="M10.5018262,20.9121192 L5.43170197,20.9121192 L5.43170197,28.5282862 L10.9096056,28.5282862 C14.621302,28.5282862 16.4322042,27.2291045 16.4322042,24.6754719 C16.4322042,21.8976882 13.9875365,20.9121192 10.5018262,20.9121192 M10.63792,9.30844847 L5.43170197,9.30844847 L5.43170197,16.9251125 L10.1849434,16.9251125 C13.715851,16.9251125 15.5719503,15.4465105 15.5719503,13.0275673 C15.5719503,10.652858 13.8519449,9.30844847 10.63792,9.30844847 M22,24.899126 C22,29.5143522 19.1937546,32.9183673 10.9994978,32.9183673 L0,32.9183673 L0,4.91836735 L10.8192111,4.91836735 C18.4690924,4.91836735 21.0945489,8.05449458 21.0945489,12.3103833 C21.0945489,15.311821 19.2836468,17.3281868 16.0244248,18.4032174 C19.7366234,19.2093662 22,21.5840755 22,24.899126" class="bee" fill="#D42C41"></path>
+        <path d="M35.1660662,14.9059854 C37.8741609,14.9059854 39.0728338,16.6537372 39.0728338,19.4314497 L39.0728338,19.7898482 L30.2832223,19.8345859 C30.5491563,17.2805618 32.2811747,14.9059854 35.1660662,14.9059854 L35.1660662,14.9059854 Z M42.6683601,26.8250961 C40.8038672,27.9892698 38.4513361,28.7065638 36.2760945,28.7065638 C32.6357534,28.7065638 30.3723595,26.4214628 30.1497628,23.0606693 L30.1497628,22.9264563 C30.1497628,22.9264563 43.5119618,22.7470085 43.5562842,22.7470085 C43.8227107,21.8512608 44,20.4171698 44,19.2972367 C44,14.233429 40.981649,10.9183673 35.5659522,10.9183673 C29.4396205,10.9183673 25,15.3985969 25,22.120184 C25,28.7065638 29.3504834,32.9183673 35.9210233,32.9183673 C38.3735258,32.9183673 40.7890931,32.4192937 42.6683601,31.5498916 L42.6683601,26.8250961 Z" class="eee" fill="#D42C41" mask="url(#mask-4)"></path>
+        <path d="M60.6270503,10.9183673 C58.2154573,10.9183673 55.8468602,12.1972794 54.0811614,14.1829457 L54.0811614,11.6681925 L49,11.6681925 L49,31.9183673 L54.0811614,31.9183673 L54.0811614,17.4039638 C55.0719783,16.4334002 56.7082117,15.506397 58.4734328,15.506397 C60.7565157,15.506397 61.9188386,16.5210103 61.9188386,19.52129 L61.9188386,31.9183673 L67,31.9183673 L67,17.9330506 C67,13.5652699 64.6318807,10.9183673 60.6270503,10.9183673" class="enn" fill="#D42C41" mask="url(#mask-4)"></path>
+        <polygon class="jay" fill="#D42C41" mask="url(#mask-4)" points="72 47.9183673 78 47.9183673 78 11.9183673 72 11.9183673"></polygon>
+        <polygon class="eye" fill="#D42C41" mask="url(#mask-4)" points="83 31.9183673 89 31.9183673 89 11.9183673 83 11.9183673"></polygon>
+      </g>
+    </svg>
+  </a>
+  <nav>
+    
+        <a href='/' class='link'>Home</a>
+      
+
+
+    
+      
+    
+      
+        
+          <a href='/contact/' class='link'>Contact</a>
+          
+            
+              <!-- Blog be special -->
+              <a href='/blog' class='link'>Blog</a>
+            
+          
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href='/resume/' class='link'>Resume</a>
+          
+        
+      
+    
+      
+    
+      
+    
+  </nav>
+</div>
+    <div class='content secrets-of-the-site-container-part-1-page'>
+      <div class="blog-post">
+  <article class="article">
+    <div class='blog-info'>
+      <div class='demos'>
+        
+        
+          <div class="cat" href="blog/categories/#Tutorials">Tutorials</div>
+          
+        
+        <div class='datetime'>24 Jul 2020</div>
+      </div>
+      <h1 class='title'>Secrets of the Site Container: Part 1</h1>
+      
+        <div class='auth'>By Benji</div>
+      
+    </div>
+    <section class='content'>
+      <p>Big screens are getting bigger. Wider. Less expensive. Our web experience should be seamless, but our eyes can’t adjust to giant blobby things. Containers to the rescue. But first, a digression about font-size and readability!</p>
+
+<hr />
+
+<h4 style="margin: -25px 0 20px; line-height: 1.1; font-weight: 500;"><strong>Disclaimer!</strong> This page may scroll horizontally. It's ironic, because it's about site containers.</h4>
+<hr />
+
+<h2 id="theres-a-problem-with-your-eyes">There’s a problem with your eyes</h2>
+<p>You can’t read long lines of text. The common recommendation is between <a href="https://www.smashingmagazine.com/2014/09/balancing-line-length-font-size-responsive-web-design/">45 and 75 characters per line</a>. You may have experienced this issue when you tried to use your TV as a monitor. Wait you never did that? Oh, no, me either 😅</p>
+
+<p>Imagine that length as two or three alphabets, back to back. Of course the length of the alphabet depends on how large the character widths are. In this particular body font, I can get a better sense by incorporating capitalized letters. Or I could even use them outright.</p>
+
+<p>Just about this long:
+abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz</p>
+
+<p>Maybe this long:
+AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz</p>
+
+<p>Or even this long:
+ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+
+<h2 id="but-really-big-views-are-bad-too">But really big views are bad too</h2>
+<p>The unspoken flip-side comes from larger font sizes at a close distance. Making the text larger for larger screens only works until your <a href="https://en.wikipedia.org/wiki/Saccade">saccade</a> becomes noticeably uncomfortable. Thus a rather fine case <a href="https://baymard.com/blog/line-length-readability">against a purely liquid layout</a>. For large web views, I err on the side of caution. I keep font-size the same on even the largest screens. So something beyond 750px is bad.</p>
+
+<h2 id="compare-the-next-two-paragraphs">Compare the next two paragraphs:</h2>
+<h3 id="paragraph-1">Paragraph 1:</h3>
+<div style="font-size: 20px; line-height: 1.1; letter-spacing: 1.2px; width: 565px;">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, fermentum massa justo sit amet risus. <br /><br />
+abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz</div>
+
+<h3 id="paragraph-2">Paragraph 2:</h3>
+<div style="font-size: 40px; line-height: 1.2; letter-spacing: 1.5px; width: 1045px; margin-bottom: 35px;">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, fermentum massa justo sit amet risus. <br /><br />
+abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz</div>
+
+<blockquote>
+  <p>The larger text made it hard to move from the end of one line to the start of the next. Either it’s because you’re scrolling around, or just because your screen was so big that your eye movement was unnatural.</p>
+</blockquote>
+
+<h2 id="honestly-this-doesnt-really-change-with-non-text-items">Honestly this doesn’t really change with non-text items</h2>
+
+<p>A huge image doesn’t help. Even disregarding image sizing and web optimization (our rule at work is twice the pixels for each web pixel, so we get some pretty large picture file sizes!) you’ll quickly lose a picture of a forest for some giant trees.</p>
+
+<p>The solution to this is the same as most other web design problems: a few extra tag wrappers and some CSS. But <em>how</em> is the more important question. That’s how this blog was born.</p>
+
+<h2 id="zero-use-appropriate-html">Zero. Use appropriate HTML</h2>
+
+<p>The sectional approach to site configuration is underrated. A good page has content sections, and they are usually at least 2/3 the height of your browser window. Taking up space and using the infinite scroll canvas that is available to you dramatically increases user interaction and readability. There is also a great reason that HTML has a <code class="highlighter-rouge">&lt;section&gt;</code> tag! It’s for holding this container! Use it like this:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;section</span> <span class="na">class=</span><span class="s">"hero"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero-container"</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- your div contents --&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/section&gt;</span></code></pre></figure>
+
+<p><em>Note: Your section tag might have a full-width background image or other width-breaking things. Don’t limit yourself by making the section tag itself a container.</em></p>
+
+<h2 id="one-start-at-the-maximum-which-is-actually-the-smallest">One. Start at the maximum, which is actually the smallest.</h2>
+
+<p>What’s the maximum width that your section can be? The answer might not make immediate sense. <code class="highlighter-rouge">max-width</code> should be used on your smallest screen sizes. The narrowest screen I’ve seen on devtools is the iPhone 5/SE, weighing in at a mere 325px. If your maximum width is above that, your site will horizontally scroll on that screen. If you use absolute units, your page will forever be confined to 325px.</p>
+
+<div style="display: flex; flex-wrap: no-wrap; justify-content: center; align-items: flex-grow; margin-bottom: 20px;">
+  <div style="width: calc((100% - 330px) / 2); background-color: #350e1411;"></div>
+  <p style="width: 320px; margin: 20px auto 25px; padding-bottom: unset;">Don't make your site live in a world that is only 325 px wide, it is a special place where UX dreams go to die and nothing can be accomplished. Two sentences of this took up six lines and looked terrible.</p>
+  <div style="width: calc((100% - 330px) / 2); margin-left: -5px; background-color: #350e1411;"></div>
+</div>
+
+<p>Instead, you need a <em>relative-unit based</em> <code class="highlighter-rouge">max-width</code> to account for things. I use percentages, because they are based on your container’s size. If your container is <code class="highlighter-rouge">&lt;body&gt;</code>, that’s great, but even if you’re dealing with a strange outer container this won’t break width as a <code class="highlighter-rouge">vw</code> might.</p>
+
+<p>So what percentage? If it’s a hero section it’ll probably be at the widest your screen allows, but it should never break the horizontal dimensions of your device. So that’s <code class="highlighter-rouge">100%</code>. Text also needs to breathe, so text on a small screen should be <code class="highlighter-rouge">90-95%</code>. A card or something that is supposed to visually break the monotony of the left edge can creep in more, but after <code class="highlighter-rouge">85%</code> things start to get silly.</p>
+
+<figure class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="nc">.hero-container</span> <span class="p">{</span>
+  <span class="nl">max-width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.text-container</span> <span class="p">{</span>
+  <span class="nl">max-width</span><span class="p">:</span> <span class="m">95%</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.narrow-container</span> <span class="p">{</span>
+  <span class="nl">max-width</span><span class="p">:</span> <span class="m">90%</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<h2 id="two-move-on-to-bigger-and-better-screens">Two: Move on to bigger and better screens.</h2>
+
+<p>We’ve determined that text should live somewhere between <code class="highlighter-rouge">600px-750px</code>. Once we find that sweet spot, that’s really the size we want. So let’s use that as our <code class="highlighter-rouge">width</code>!</p>
+
+<p>Other widths will make sense too. Most images look great at between <code class="highlighter-rouge">1280-1500px</code>, your modern laptop screen width. If it’s a group of cards or items, they might follow the same path, though individual items with paragraphs will follow the same text readability rule.</p>
+
+<p>Our outlying ‘monotony breakers’ can live somewhere between a paragraph and a hero.</p>
+
+<figure class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="nc">.hero-container</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">1500px</span><span class="p">;</span>
+  <span class="nl">max-width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.text-container</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">750px</span><span class="p">;</span>
+  <span class="nl">max-width</span><span class="p">:</span> <span class="m">95%</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.narrow-container</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">1100px</span><span class="p">;</span>
+  <span class="nl">max-width</span><span class="p">:</span> <span class="m">90%</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<h2 id="left-of-center">Left of center</h2>
+
+<p>Browsers automatically place blocks starting from the left. Your screen probably looks like this:</p>
+<div style="height: 100px; max-width: 100%; width: 1500px; background-color: #2A4B7C44;"></div>
+<div style="height: 100px; max-width: 90%; width: 1100px; background-color: #350e1444;"></div>
+<div style="height: 100px; max-width: 95%; width: 750px; background-color: #264E3644; margin-bottom: 20px;"></div>
+
+<p>Well that isn’t surprising! Block-level elements fill from the left. All you need to do is center those elements on the screen and you’re set. <code class="highlighter-rouge">display: flex;</code> will accomplish this, but changing your overall display feels like overkill. All you need is some sort of automatic margin on both sides of your section, to keep it centered. You know, like <code class="highlighter-rouge">margin: 0 auto;</code>.</p>
+
+<figure class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="nc">.hero-container</span> <span class="p">{</span>
+  <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span> <span class="nb">auto</span><span class="p">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">1500px</span><span class="p">;</span>
+  <span class="nl">max-width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.text-container</span> <span class="p">{</span>
+  <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span> <span class="nb">auto</span><span class="p">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">750px</span><span class="p">;</span>
+  <span class="nl">max-width</span><span class="p">:</span> <span class="m">95%</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.narrow-container</span> <span class="p">{</span>
+  <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span> <span class="nb">auto</span><span class="p">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">1100px</span><span class="p">;</span>
+  <span class="nl">max-width</span><span class="p">:</span> <span class="m">90%</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<h2 id="tada">Tada!</h2>
+
+<div style="margin: 0 auto; height: 100px; max-width: 100%; width: 1500px; background-color: #2A4B7C44;"></div>
+<div style="margin: 0 auto; height: 100px; max-width: 90%; width: 1100px; background-color: #350e1444;"></div>
+<div style="height: 100px; max-width: 95%; width: 750px; background-color: #264E3644; margin: 0 auto 20px;"></div>
+
+<h2 id="next-steps">Next steps:</h2>
+
+<p>What if you want to blow out the screen, anchoring items to the left or right on one side while maintaining your site container width on the other? It’s not impossible. <a href="/site-containers-two/">I’ll show you how in my next article</a>!</p>
+
+<blockquote>
+  <p>You can also <a href="https://codepen.io/benjithaimmortal/full/XWXyJjX">see this blog in action on CodePen</a>.</p>
+</blockquote>
+
+      <hr>
+
+      <div class='bio'>
+        <h2>About the Author:</h2>
+        <p><a href='/contact/'>Benji</a> is a professional web dude. He works at <a href='https://builtbytophat.com' target='_blank' rel='noopener noreferrer'>Top Hat</a> making cool web things for money (and sometimes beer).</p>
+      </div>
+      <div class='disclaimer'>
+        <strong>Disclaimer!</strong>
+        Photos on this blog are sometimes taken by me, but sometimes free for use with attribution from <a href='https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText' target='_blank' rel='noopener noreferrer'>Unsplash.com</a>.
+      </div>
+    </section>
+  </article>
+  <div class='outer-hero'>
+    <div class='hero' style="background-image: url(/assets/images/containers.webp)"></div>
+  </div>
+</div>
+    </div>
+  </body>
+  <footer>
+  <a href='/' class='inverse-logo'>
+    <svg width="90px" height="47px" viewBox="0 0 90 47">
+      <g class="full-logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M4.12470513,7.7974 C2.11314103,7.7974 0.482551282,6.1239 0.482551282,4.0594 C0.482551282,1.9954 2.11314103,0.3219 4.12470513,0.3219 L14.9776026,0.3219 C16.9891667,0.3219 18.6197564,1.9954 18.6197564,4.0594 C18.6197564,6.1239 16.9891667,7.7974 14.9776026,7.7974 L4.12470513,7.7974 Z" class="toggleBackground" fill-opacity="0.4" fill="#D42C41" mask="url(#mask-2)" transform="translate(71.000000, 0.918367)"></path>
+        <path d="M72.132849,7.89676344 C71.3772704,7.2155381 71,6.38261723 71,5.39706442 C71,4.41151162 71.3772704,3.58514549 72.132849,2.91843423 C72.8873897,2.25172298 73.8432797,1.91836735 75,1.91836735 C76.1567203,1.91836735 77.1120913,2.25172298 77.867151,2.91843423 C78.6216917,3.58514549 79,4.41151162 79,5.39706442 C79,6.41164539 78.6216917,7.25158921 77.867151,7.91830046 C77.1120913,8.58547991 76.1567203,8.91836735 75,8.91836735 C73.8432797,8.91836735 72.8873897,8.57798878 72.132849,7.89676344 Z" class="toggle-dot" fill="#D42C41"></path>
+        <path d="M10.5018262,20.9121192 L5.43170197,20.9121192 L5.43170197,28.5282862 L10.9096056,28.5282862 C14.621302,28.5282862 16.4322042,27.2291045 16.4322042,24.6754719 C16.4322042,21.8976882 13.9875365,20.9121192 10.5018262,20.9121192 M10.63792,9.30844847 L5.43170197,9.30844847 L5.43170197,16.9251125 L10.1849434,16.9251125 C13.715851,16.9251125 15.5719503,15.4465105 15.5719503,13.0275673 C15.5719503,10.652858 13.8519449,9.30844847 10.63792,9.30844847 M22,24.899126 C22,29.5143522 19.1937546,32.9183673 10.9994978,32.9183673 L0,32.9183673 L0,4.91836735 L10.8192111,4.91836735 C18.4690924,4.91836735 21.0945489,8.05449458 21.0945489,12.3103833 C21.0945489,15.311821 19.2836468,17.3281868 16.0244248,18.4032174 C19.7366234,19.2093662 22,21.5840755 22,24.899126" class="bee" fill="#D42C41"></path>
+        <path d="M35.1660662,14.9059854 C37.8741609,14.9059854 39.0728338,16.6537372 39.0728338,19.4314497 L39.0728338,19.7898482 L30.2832223,19.8345859 C30.5491563,17.2805618 32.2811747,14.9059854 35.1660662,14.9059854 L35.1660662,14.9059854 Z M42.6683601,26.8250961 C40.8038672,27.9892698 38.4513361,28.7065638 36.2760945,28.7065638 C32.6357534,28.7065638 30.3723595,26.4214628 30.1497628,23.0606693 L30.1497628,22.9264563 C30.1497628,22.9264563 43.5119618,22.7470085 43.5562842,22.7470085 C43.8227107,21.8512608 44,20.4171698 44,19.2972367 C44,14.233429 40.981649,10.9183673 35.5659522,10.9183673 C29.4396205,10.9183673 25,15.3985969 25,22.120184 C25,28.7065638 29.3504834,32.9183673 35.9210233,32.9183673 C38.3735258,32.9183673 40.7890931,32.4192937 42.6683601,31.5498916 L42.6683601,26.8250961 Z" class="eee" fill="#D42C41" mask="url(#mask-4)"></path>
+        <path d="M60.6270503,10.9183673 C58.2154573,10.9183673 55.8468602,12.1972794 54.0811614,14.1829457 L54.0811614,11.6681925 L49,11.6681925 L49,31.9183673 L54.0811614,31.9183673 L54.0811614,17.4039638 C55.0719783,16.4334002 56.7082117,15.506397 58.4734328,15.506397 C60.7565157,15.506397 61.9188386,16.5210103 61.9188386,19.52129 L61.9188386,31.9183673 L67,31.9183673 L67,17.9330506 C67,13.5652699 64.6318807,10.9183673 60.6270503,10.9183673" class="enn" fill="#D42C41" mask="url(#mask-4)"></path>
+        <polygon class="jay" fill="#D42C41" mask="url(#mask-4)" points="72 47.9183673 78 47.9183673 78 11.9183673 72 11.9183673"></polygon>
+        <polygon class="eye" fill="#D42C41" mask="url(#mask-4)" points="83 31.9183673 89 31.9183673 89 11.9183673 83 11.9183673"></polygon>
+      </g>
+    </svg>
+  </a>
+  <div class='inverse-social'>
+    <a href="https://github.com/benjithaimmortal" class='git'><img src='http://localhost:4000assets/images/ian/social-g.png' alt='GitHub' class='gitr'></a>
+    <a href='https://codepen.io/benjithaimmortal' class='face'><img src='http://localhost:4000assets/images/ian/social-c.svg' alt='Facebook' class='penr'></a>
+    <a href='https://twitter.com/monjibram' class='twit'><img src='http://localhost:4000assets/images/ian/social-t.svg' alt='Twitter' class='twitr'></a>
+    <a href='https://www.linkedin.com/in/benjamin-kostenbader-18499836/' class='linked'><img src='http://localhost:4000assets/images/ian/social-l.svg' alt='LinkedIn' class='linkedr'></a>
+  </div>
+</footer>
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function(){
+      var stopper = document.getElementById("pagestopper")
+      stopper.addEventListener("change", function(){
+        if (stopper.checked) {
+          document.body.classList.add("locked");
+        } else {
+          document.body.classList.remove("locked");
+        }
+        // console.log("this did something");
+      });
+    });
+  </script>
+</html>

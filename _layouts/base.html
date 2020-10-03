@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en-US">
+  {% include head.html %}
+  <body>
+    {% include nav.html %}
+    <div class='content {{ page.title | slugify }}-page'>
+      {{ content }}
+    </div>
+  </body>
+  {% include footer.html %}
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function(){
+      var stopper = document.getElementById("pagestopper")
+      stopper.addEventListener("change", function(){
+        if (stopper.checked) {
+          document.body.classList.add("locked");
+        } else {
+          document.body.classList.remove("locked");
+        }
+        // console.log("this did something");
+      });
+    });
+  </script>
+</html>
