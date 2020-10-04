@@ -169,31 +169,31 @@
     <h3 class='filter-title'>Filters</h3>
     <div class='filters'>
       
-        <div class='filter'>Tutorials</div>
+        <div class='filter' data-filter="tutorials">Tutorials</div>
         <!--  -->
       
-        <div class='filter'>Jamstack</div>
+        <div class='filter' data-filter="jamstack">Jamstack</div>
         <!--  -->
       
-        <div class='filter'>Static&nbsp;Sites</div>
+        <div class='filter' data-filter="static-nbsp-sites">Static&nbsp;Sites</div>
         <!--  -->
       
-        <div class='filter'>Site&nbsp;Generators</div>
+        <div class='filter' data-filter="site-nbsp-generators">Site&nbsp;Generators</div>
         <!--  -->
       
-        <div class='filter'>WordPress</div>
+        <div class='filter' data-filter="wordpress">WordPress</div>
         <!--  -->
       
-        <div class='filter'>CMS</div>
+        <div class='filter' data-filter="cms">CMS</div>
         <!--  -->
       
-        <div class='filter'>Development</div>
+        <div class='filter' data-filter="development">Development</div>
         <!--  -->
       
-        <div class='filter'>Life</div>
+        <div class='filter' data-filter="life">Life</div>
         <!--  -->
       
-        <div class='filter'>Site&nbsp;Architecture</div>
+        <div class='filter' data-filter="site-nbsp-architecture">Site&nbsp;Architecture</div>
         <!--  -->
       
       <div class='mob-margin filter'></div>
@@ -201,10 +201,10 @@
     <div class='post-flex' data-page='' data-total-pages=''>
       
         
-          <a href='/3monji/site-containers-two/' class='post-card'>
+          <a href='/3monji/site-containers-two/' class='post-card' data-filter='tutorials'>
   <div class='left'>
     <div class='tag-date'>
-      <div class='tags' data-category='Tutorials'>Tutorials</div>
+      <div class='tags'>Tutorials</div>
       <div class='date'>08/08/20</div>
     </div>
     <div class='title'>Secrets of the Site Container: Part 2</div>
@@ -213,10 +213,10 @@
   <div class='right' style='background-image: url(/3monji/assets/images/pretty-container.webp);'></div>
 </a>
         
-          <a href='/3monji/get-a-life/' class='post-card'>
+          <a href='/3monji/get-a-life/' class='post-card' data-filter='developmentlife'>
   <div class='left'>
     <div class='tag-date'>
-      <div class='tags' data-category='Development,Life'>Development, Life</div>
+      <div class='tags'>Development, Life</div>
       <div class='date'>07/04/20</div>
     </div>
     <div class='title'>Less Than 365 Days of Code</div>
@@ -225,10 +225,10 @@
   <div class='right' style='background-image: url(/3monji/assets/images/life.webp);'></div>
 </a>
         
-          <a href='/3monji/jekyll-custom-post-types/' class='post-card'>
+          <a href='/3monji/jekyll-custom-post-types/' class='post-card' data-filter='tutorialswordpress'>
   <div class='left'>
     <div class='tag-date'>
-      <div class='tags' data-category='Tutorials,WordPress'>Tutorials, WordPress</div>
+      <div class='tags'>Tutorials, WordPress</div>
       <div class='date'>06/27/20</div>
     </div>
     <div class='title'>WP Custom Post Types but Free</div>
@@ -237,10 +237,10 @@
   <div class='right' style='background-image: url(/3monji/assets/images/custom-food-types.svg);'></div>
 </a>
         
-          <a href='/3monji/wordpress-is-a-framework/' class='post-card'>
+          <a href='/3monji/wordpress-is-a-framework/' class='post-card' data-filter='wordpresscms'>
   <div class='left'>
     <div class='tag-date'>
-      <div class='tags' data-category='WordPress,CMS'>WordPress, CMS</div>
+      <div class='tags'>WordPress, CMS</div>
       <div class='date'>06/20/20</div>
     </div>
     <div class='title'>Wordpress is a Framework</div>
@@ -249,10 +249,10 @@
   <div class='right' style='background-image: url(/3monji/assets/images/framework.webp);'></div>
 </a>
         
-          <a href='/3monji/associative-arrays-make-me-happy/' class='post-card'>
+          <a href='/3monji/associative-arrays-make-me-happy/' class='post-card' data-filter='tutorials'>
   <div class='left'>
     <div class='tag-date'>
-      <div class='tags' data-category='Tutorials'>Tutorials</div>
+      <div class='tags'>Tutorials</div>
       <div class='date'>06/01/20</div>
     </div>
     <div class='title'>An Ode to the Object</div>
@@ -261,10 +261,10 @@
   <div class='right' style='background-image: url(/3monji/assets/images/hash.webp);'></div>
 </a>
         
-          <a href='/3monji/jam-that-sucker/' class='post-card'>
+          <a href='/3monji/jam-that-sucker/' class='post-card' data-filter='jamstackstatic-nbsp-sites'>
   <div class='left'>
     <div class='tag-date'>
-      <div class='tags' data-category='Jamstack,Static&nbsp;Sites'>Jamstack, Static&nbsp;Sites</div>
+      <div class='tags'>Jamstack, Static&nbsp;Sites</div>
       <div class='date'>05/17/20</div>
     </div>
     <div class='title'>You Should Probably Jamstack That</div>
@@ -326,6 +326,37 @@
     </div>
   </div>
 </section>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+  $(function(){
+    $('.filter').each(function(){
+      var filter = $(this).data('filter');
+      if (!$('.post-card[data-filter*="' + filter + '"]').length) {
+        $(this).hide();
+      }
+    })
+
+    function filterCards(filter, btn) {
+      $('.filter').removeClass('active');
+      btn.addClass('active');
+      $('.post-card').hide();
+      $('.post-card[data-filter*="' + filter + '"]').show();
+    }
+    $('.filter').click(function(){
+      if ($(this).hasClass('active')) {
+        $('.post-card').show();
+        $(this).removeClass('active');
+      } else {
+        var filter = $(this).data('filter');
+        filterCards(filter, $(this));
+      }
+    })
+  });
+</script>
     </div>
   </body>
   <footer>

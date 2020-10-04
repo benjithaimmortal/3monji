@@ -122,31 +122,31 @@
     <h3 class='filter-title'>Filters</h3>
     <div class='filters'>
       
-        <div class='filter'>Tutorials</div>
+        <div class='filter' data-filter="tutorials">Tutorials</div>
         <!--  -->
       
-        <div class='filter'>Jamstack</div>
+        <div class='filter' data-filter="jamstack">Jamstack</div>
         <!--  -->
       
-        <div class='filter'>Static&nbsp;Sites</div>
+        <div class='filter' data-filter="static-nbsp-sites">Static&nbsp;Sites</div>
         <!--  -->
       
-        <div class='filter'>Site&nbsp;Generators</div>
+        <div class='filter' data-filter="site-nbsp-generators">Site&nbsp;Generators</div>
         <!--  -->
       
-        <div class='filter'>WordPress</div>
+        <div class='filter' data-filter="wordpress">WordPress</div>
         <!--  -->
       
-        <div class='filter'>CMS</div>
+        <div class='filter' data-filter="cms">CMS</div>
         <!--  -->
       
-        <div class='filter'>Development</div>
+        <div class='filter' data-filter="development">Development</div>
         <!--  -->
       
-        <div class='filter'>Life</div>
+        <div class='filter' data-filter="life">Life</div>
         <!--  -->
       
-        <div class='filter'>Site&nbsp;Architecture</div>
+        <div class='filter' data-filter="site-nbsp-architecture">Site&nbsp;Architecture</div>
         <!--  -->
       
       <div class='mob-margin filter'></div>
@@ -154,10 +154,10 @@
     <div class='post-flex' data-page='2' data-total-pages='3'>
       
         
-          <a href='/3monji/jekyll-custom-fields/' class='post-card'>
+          <a href='/3monji/jekyll-custom-fields/' class='post-card' data-filter='tutorials'>
   <div class='left'>
     <div class='tag-date'>
-      <div class='tags' data-category='Tutorials'>Tutorials</div>
+      <div class='tags'>Tutorials</div>
       <div class='date'>06/13/20</div>
     </div>
     <div class='title'>WordPress Custom Fields but Free</div>
@@ -166,10 +166,10 @@
   <div class='right' style='background-image: url(/3monji/assets/images/automation.webp);'></div>
 </a>
         
-          <a href='/3monji/ajax-part-2/' class='post-card'>
+          <a href='/3monji/ajax-part-2/' class='post-card' data-filter='tutorials'>
   <div class='left'>
     <div class='tag-date'>
-      <div class='tags' data-category='Tutorials'>Tutorials</div>
+      <div class='tags'>Tutorials</div>
       <div class='date'>06/05/20</div>
     </div>
     <div class='title'>Learn AJAX: Part 2</div>
@@ -178,10 +178,10 @@
   <div class='right' style='background-image: url(/3monji/assets/images/ajax-bottle2.webp);'></div>
 </a>
         
-          <a href='/3monji/associative-arrays-make-me-happy/' class='post-card'>
+          <a href='/3monji/associative-arrays-make-me-happy/' class='post-card' data-filter='tutorials'>
   <div class='left'>
     <div class='tag-date'>
-      <div class='tags' data-category='Tutorials'>Tutorials</div>
+      <div class='tags'>Tutorials</div>
       <div class='date'>06/01/20</div>
     </div>
     <div class='title'>An Ode to the Object</div>
@@ -190,10 +190,10 @@
   <div class='right' style='background-image: url(/3monji/assets/images/hash.webp);'></div>
 </a>
         
-          <a href='/3monji/why-you-should-pay-a-developer/' class='post-card'>
+          <a href='/3monji/why-you-should-pay-a-developer/' class='post-card' data-filter='site-nbsp-generators'>
   <div class='left'>
     <div class='tag-date'>
-      <div class='tags' data-category='Site&nbsp;Generators'>Site&nbsp;Generators</div>
+      <div class='tags'>Site&nbsp;Generators</div>
       <div class='date'>05/17/20</div>
     </div>
     <div class='title'>Pay for Web Development</div>
@@ -202,10 +202,10 @@
   <div class='right' style='background-image: url(/3monji/assets/images/code.webp);'></div>
 </a>
         
-          <a href='/3monji/jam-that-sucker/' class='post-card'>
+          <a href='/3monji/jam-that-sucker/' class='post-card' data-filter='jamstackstatic-nbsp-sites'>
   <div class='left'>
     <div class='tag-date'>
-      <div class='tags' data-category='Jamstack,Static&nbsp;Sites'>Jamstack, Static&nbsp;Sites</div>
+      <div class='tags'>Jamstack, Static&nbsp;Sites</div>
       <div class='date'>05/17/20</div>
     </div>
     <div class='title'>You Should Probably Jamstack That</div>
@@ -214,10 +214,10 @@
   <div class='right' style='background-image: url(/3monji/assets/images/jam.webp);'></div>
 </a>
         
-          <a href='/3monji/paginate-with-jekyll/' class='post-card'>
+          <a href='/3monji/paginate-with-jekyll/' class='post-card' data-filter='tutorials'>
   <div class='left'>
     <div class='tag-date'>
-      <div class='tags' data-category='Tutorials'>Tutorials</div>
+      <div class='tags'>Tutorials</div>
       <div class='date'>05/17/20</div>
     </div>
     <div class='title'>Paginate This Blog</div>
@@ -252,7 +252,7 @@
     var totalPages = new Number ($(".post-flex").data("totalPages"));
     
     function scrollCheck(){
-      if($(window).scrollTop() + $(window).height() > $(document).height() - 250) {
+      if($(window).scrollTop() + $(window).height() > $(document).height() - 200) {
         if (nextPage != totalPages) {
           loadMorePosts()
         } else {
@@ -264,21 +264,48 @@
     function loadMorePosts() {
       nextPage = nextPage + 1;
       $(".skeleton").addClass("active");
-       
+      
       jQuery.ajax({
         type: 'GET',
         url: '/3monji/blog/' + nextPage,
       })
         .done(function(response){
-          console.log(response);
           $(response).find('.post-card').each(function(){
             $('.post-flex').append(this);
             $('.skeleton').remove();
+
+            if ($('.filter.active').length) {
+              filterCards($('.filter.active').data('filter'), $('.filter.active'));
+            }
           });
         });
     }
+    
     // you're on the right page
     $(window).scroll(_.throttle(scrollCheck, 500, true));
+
+    function filterCards(filter, btn) {
+      $('.filter').removeClass('active');
+      btn.addClass('active');
+      $('.post-card').hide();
+      $('.post-card[data-filter*="' + filter + '"]').show();
+    }
+
+    $('.filter').click(function(){
+      if ($(this).hasClass('active')) {
+        $('.post-card').show();
+        $(this).removeClass('active');
+      } else {
+        var filter = $(this).data('filter');
+        filterCards(filter, $(this));
+
+        while (($('.post-card[data-filter*="' + filter + '"]').length < 6) && (totalPages != nextPage)) {
+          loadMorePosts();
+        }
+      }
+    })
+
+    
   });
 </script>
     </div>

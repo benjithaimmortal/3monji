@@ -17,7 +17,7 @@
     <h3 class='filter-title'>Filters</h3>
     <div class='filters'>
       {% for category in site.categories %}
-        <div class='filter'>{{ category[0] }}</div>
+        <div class='filter' data-filter="{{ category[0] | slugify }}">{{ category[0] }}</div>
         <!-- {% if forloop.index < 6 %}
         {% endif %} -->
       {% endfor %}

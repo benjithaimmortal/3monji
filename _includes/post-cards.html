@@ -1,7 +1,7 @@
-<a href='{{ site.baseurl }}{{ post.url }}' class='post-card'>
+<a href='{{ site.baseurl }}{{ post.url }}' class='post-card' data-filter='{% for category in post.categories %}{{ category | slugify }}{% if forloop.last %}{% else %} {% endif %}{% endfor %}'>
   <div class='left'>
     <div class='tag-date'>
-      <div class='tags' data-category='{% for category in post.categories %}{{ category | slugize }}{% if forloop.last %}{% else %},{% endif %}{% endfor %}'>{% for category in post.categories %}{{ category | slugize }}{% if forloop.last %}{% else %}, {% endif %}{% endfor %}</div>
+      <div class='tags'>{% for category in post.categories %}{{ category }}{% if forloop.last %}{% else %}, {% endif %}{% endfor %}</div>
       <div class='date'>{{ post.date | date: "%D" }}</div>
     </div>
     <div class='title'>{{ post.title }}</div>

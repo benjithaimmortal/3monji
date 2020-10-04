@@ -137,11 +137,14 @@
     .highlight, pre, code {
       font-family: $mono-font;
     }
-    pre {
-      overflow: auto;
-      background-color: #eeea;
-      padding: 25px 35px;
-      margin-bottom: 21px;
+    figure.highlight {
+      width: 90vw;
+      > pre {
+        overflow: auto;
+        background-color: #eeea;
+        padding: 25px 35px;
+        margin-bottom: 21px;
+      }
     }
 
     .highlight .hll { background-color: #ffffcc }
