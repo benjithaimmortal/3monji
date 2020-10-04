@@ -12,12 +12,31 @@ hero: jam.webp
 image: assets/images/jam.webp
 ---
 
-I use WordPress all day every day. It's extremely customizable and easy for both web administrators and developers. But you don't need WordPress. You need JAMstack.
+I use WordPress all day every day. It's extremely customizable and easy for both web administrators and developers. But you don't need WordPress. You need Jamstack.
 
 Top Hat makes custom WordPress sites that are both deliciously beautiful and incredibly easy to use. I work with a lot of small- and medium-sized businesses and their marketing sites. I also freelance for up-and-coming businesses and people who consider their budgets a bit lower. I'm even a participating member of WP Pittsburgh, the group for small business owners and developers who study and practice all things WordPress. But I'm still here telling you that ... you probably don't need it.
 
-**Write your hosting fee on a piece of paper. Then click the button.**
-<button onclick="alert('Too much :(')" style="padding: 5px; border: none; background: #d8acb2;">How much do you pay?</button>
+**Type your hosting fee here, then click the button.**
+<!-- <form action="event.preventDefault()"> -->
+  <input placeholder='$' name='Fee' style="
+    font: 400 18px / 1.2;
+    border-radius: 10px;
+    border: solid 1px #cddeec;
+    height: 33px;
+    width: 345px;
+    padding-left: 10px;
+    ">
+  <button for="Fee" onclick="alert('Too much :(')" style="
+    margin-top: 15px;
+    border-radius: 10px;
+    /* border: solid 1px #cddeec; */
+    height: 35px;
+    padding: 0 15px;
+    color: white;
+    background-color: #d42c41;">
+      How much do you pay?
+  </button>
+<!-- </form> -->
 
 There's got to be a catch, you say. I get what I pay for. I'm going to drop quality somewhere. Maybe I won't get a custom url? Maybe I have to choose from a gaudy design template, or worse, use a clunky website editor like it's 2005 and I'm building a MySpace profile. Is it going to be slow? It'll probably be really slow.
 
@@ -27,7 +46,7 @@ Static Site
 : A website that downloads everything to your browser and processes things from there [browser-based]
 : A website that can connect to everything without querying a hosting server many times [pre-rendered]
 
-You've probably heard of this before. These days it's called the JAMstack, or **J**avaScript, **A**PIs and **M**arkup, which is an easier way of thinking about its key components. But we should start from the beginning of JAM. Or is it the end?
+You've probably heard of this before. These days it's called the Jamstack, or **J**avaScript, **A**PIs and **M**arkup, which is an easier way of thinking about its key components. But we should start from the beginning of JAM. Or is it the end?
 
 #### M[arkup]
 
@@ -61,6 +80,6 @@ A savvy developer could template and build a lightweight, fully custom site to y
 I strongly encourage you to hit F12 and take a look at all the crazy things a simple blog like this needs to load and give to every browser that visits. Search engine meta, styles, JS libraries to make things scroll smoothly... on a standard hosted site it will all load again on every click. Storing it properly and only loading *new* things adds serious speed. I'm talking [blazingly](https://www.shopflamingo.com), [ludicrously](https://ca.braun.com/en-ca) [fast](https://airbnb.io/).
 
 
-So that's the *MAJ*-- I mean-- **JAMstack**, and it's going to separate you from your competition. All you need is [the right developer]({% link contact.html %}). And save all of the hosting costs! That hosting money is much better spent on web consultancy, or invested in the development of the site itself.
+So that's the *MAJ*-- I mean-- **Jamstack**, and it's going to separate you from your competition. All you need is [the right developer]({% link contact.html %}). And save all of the hosting costs! That hosting money is much better spent on web consultancy, or invested in the development of the site itself.
 
 After that it's 100% yours. You can build out additional pages to your needs, and fill it up with content that will directly attract your clientele. You can even sell products. All without that monthly hosting fee.

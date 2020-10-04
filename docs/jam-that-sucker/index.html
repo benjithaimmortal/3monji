@@ -35,8 +35,8 @@
 <meta property="og:title" content="You Should Probably Jamstack That" />
 <meta name="author" content="Benji" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="I use WordPress all day every day. It’s extremely customizable and easy for both web administrators and developers. But you don’t need WordPress. You need JAMstack." />
-<meta property="og:description" content="I use WordPress all day every day. It’s extremely customizable and easy for both web administrators and developers. But you don’t need WordPress. You need JAMstack." />
+<meta name="description" content="I use WordPress all day every day. It’s extremely customizable and easy for both web administrators and developers. But you don’t need WordPress. You need Jamstack." />
+<meta property="og:description" content="I use WordPress all day every day. It’s extremely customizable and easy for both web administrators and developers. But you don’t need WordPress. You need Jamstack." />
 <link rel="canonical" href="http://localhost:4000/3monji/jam-that-sucker/" />
 <meta property="og:url" content="http://localhost:4000/3monji/jam-that-sucker/" />
 <meta property="og:site_name" content="Monjibram" />
@@ -45,7 +45,7 @@
 <meta property="article:published_time" content="2020-05-17T08:09:00-04:00" />
 <meta name="google-site-verification" content="OTG5c_uywRHQgQpvdcwgCYY02h8ofndgJq_kGPt1l_I" />
 <script type="application/ld+json">
-{"description":"I use WordPress all day every day. It’s extremely customizable and easy for both web administrators and developers. But you don’t need WordPress. You need JAMstack.","@type":"BlogPosting","image":"http://localhost:4000/3monji/assets/images/jam.webp","url":"http://localhost:4000/3monji/jam-that-sucker/","headline":"You Should Probably Jamstack That","dateModified":"2020-05-17T08:09:00-04:00","datePublished":"2020-05-17T08:09:00-04:00","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/3monji/assets/images/Benji.jpg"},"name":"Benji"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/3monji/jam-that-sucker/"},"author":{"@type":"Person","name":"Benji"},"@context":"https://schema.org"}</script>
+{"description":"I use WordPress all day every day. It’s extremely customizable and easy for both web administrators and developers. But you don’t need WordPress. You need Jamstack.","@type":"BlogPosting","image":"http://localhost:4000/3monji/assets/images/jam.webp","url":"http://localhost:4000/3monji/jam-that-sucker/","headline":"You Should Probably Jamstack That","dateModified":"2020-05-17T08:09:00-04:00","datePublished":"2020-05-17T08:09:00-04:00","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/3monji/assets/images/Benji.jpg"},"name":"Benji"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/3monji/jam-that-sucker/"},"author":{"@type":"Person","name":"Benji"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <meta property="og:type"             content="website" />
@@ -109,29 +109,30 @@
       <div class="blog-post">
   <article class="article">
     <div class='blog-info'>
-      <div class='demos'>
-        
-        
-          <div class="cat" href="/3monjiblog/categories/#Jamstack">Jamstack</div>
-          , 
-        
-          <div class="cat" href="/3monjiblog/categories/#Static&nbsp;Sites">Static&nbsp;Sites</div>
-          
-        
-        <div class='datetime'>17 May 2020</div>
-      </div>
-      <h1 class='title'>You Should Probably Jamstack That</h1>
+      <div class='datetime'>05/17/20</div>
       
+      
+      <div class="cat" href="/3monjiblog/categories/#Jamstack">Jamstack</div>
+      
+      <div class="cat" href="/3monjiblog/categories/#Static&nbsp;Sites">Static&nbsp;Sites</div>
+      
+      <!-- 
         <div class='auth'>By Benji</div>
-      
+         -->
     </div>
+    <h1 class='title'>You Should Probably Jamstack That</h1>
     <section class='content'>
-      <p>I use WordPress all day every day. It’s extremely customizable and easy for both web administrators and developers. But you don’t need WordPress. You need JAMstack.</p>
+      <p>I use WordPress all day every day. It’s extremely customizable and easy for both web administrators and developers. But you don’t need WordPress. You need Jamstack.</p>
 
 <p>Top Hat makes custom WordPress sites that are both deliciously beautiful and incredibly easy to use. I work with a lot of small- and medium-sized businesses and their marketing sites. I also freelance for up-and-coming businesses and people who consider their budgets a bit lower. I’m even a participating member of WP Pittsburgh, the group for small business owners and developers who study and practice all things WordPress. But I’m still here telling you that … you probably don’t need it.</p>
 
-<p><strong>Write your hosting fee on a piece of paper. Then click the button.</strong>
-<button onclick="alert('Too much :(')" style="padding: 5px; border: none; background: #d8acb2;">How much do you pay?</button></p>
+<p><strong>Type your hosting fee here, then click the button.</strong>
+<!-- <form action="event.preventDefault()"> -->
+  <input placeholder="$" name="Fee" style="     font: 400 18px / 1.2;     border-radius: 10px;     border: solid 1px #cddeec;     height: 33px;     width: 345px;     padding-left: 10px;     " />
+  <button for="Fee" onclick="alert('Too much :(')" style="     margin-top: 15px;     border-radius: 10px;     /* border: solid 1px #cddeec; */     height: 35px;     padding: 0 15px;     color: white;     background-color: #d42c41;">
+      How much do you pay?
+  </button>
+<!-- </form> --></p>
 
 <p>There’s got to be a catch, you say. I get what I pay for. I’m going to drop quality somewhere. Maybe I won’t get a custom url? Maybe I have to choose from a gaudy design template, or worse, use a clunky website editor like it’s 2005 and I’m building a MySpace profile. Is it going to be slow? It’ll probably be really slow.</p>
 
@@ -143,7 +144,7 @@
   <dd>A website that can connect to everything without querying a hosting server many times [pre-rendered]</dd>
 </dl>
 
-<p>You’ve probably heard of this before. These days it’s called the JAMstack, or <strong>J</strong>avaScript, <strong>A</strong>PIs and <strong>M</strong>arkup, which is an easier way of thinking about its key components. But we should start from the beginning of JAM. Or is it the end?</p>
+<p>You’ve probably heard of this before. These days it’s called the Jamstack, or <strong>J</strong>avaScript, <strong>A</strong>PIs and <strong>M</strong>arkup, which is an easier way of thinking about its key components. But we should start from the beginning of JAM. Or is it the end?</p>
 
 <h4 id="markup">M[arkup]</h4>
 
@@ -177,7 +178,7 @@
 
 <p>I strongly encourage you to hit F12 and take a look at all the crazy things a simple blog like this needs to load and give to every browser that visits. Search engine meta, styles, JS libraries to make things scroll smoothly… on a standard hosted site it will all load again on every click. Storing it properly and only loading <em>new</em> things adds serious speed. I’m talking <a href="https://www.shopflamingo.com">blazingly</a>, <a href="https://ca.braun.com/en-ca">ludicrously</a> <a href="https://airbnb.io/">fast</a>.</p>
 
-<p>So that’s the <em>MAJ</em>– I mean– <strong>JAMstack</strong>, and it’s going to separate you from your competition. All you need is <a href="/3monji/contact/">the right developer</a>. And save all of the hosting costs! That hosting money is much better spent on web consultancy, or invested in the development of the site itself.</p>
+<p>So that’s the <em>MAJ</em>– I mean– <strong>Jamstack</strong>, and it’s going to separate you from your competition. All you need is <a href="/3monji/contact/">the right developer</a>. And save all of the hosting costs! That hosting money is much better spent on web consultancy, or invested in the development of the site itself.</p>
 
 <p>After that it’s 100% yours. You can build out additional pages to your needs, and fill it up with content that will directly attract your clientele. You can even sell products. All without that monthly hosting fee.</p>
 

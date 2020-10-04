@@ -1,0 +1,108 @@
+/* not to be confused with PostCSS! */
+
+.blog-post {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: auto;
+  width: 95%;
+  max-width: calc(50% + 625px);
+  .article {
+    width: 600px;
+  }
+  .blog-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin-bottom: 19px;
+  }
+  .datetime {
+    font-weight: 500;
+    font-size: 22px;
+    color: $blue;
+    margin-right: auto;
+  }
+  .cat {
+    border-radius: 10px;
+    border: solid 1px $border-color;
+    height: 43px;
+    padding: 9px 15px 0;
+    color: $blue;
+    margin-left: 15px;
+  }
+  .title {
+    font-size: 37px;
+    font-weight: 700;
+    color: $red;
+    line-height: 1;
+    margin-bottom: 32px;
+  }
+  .content {
+    p + h2, p + h3, p + h4 {
+      margin-top: 41px;
+    }
+    h2 {
+      margin-bottom: 27px;
+      font-size: 32px;
+      color: $blue;
+      font-weight: 500;
+    }
+    h4 {
+      color: $blue;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    p {
+      font-size: 18px;
+      font-weight: 400;
+      margin-bottom: 21px;
+    }
+    strong, dt { font-weight: 600; }
+    dt {
+      margin-bottom: 16px;
+    }
+    dd {
+      margin-bottom: 11px;
+      padding-left: 20px;
+      position: relative;
+      &::before {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        top: 8px;
+        height: 8px;
+        width: 8px;
+        border-radius: 50%;
+        background-color: $blue;
+      }
+    }
+  }
+  .outer-hero {
+    clip-path: inset(0 0);
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: calc(100vh - 97px);
+    width: calc(100% - 640px);
+    margin-left: auto;
+    // max-width: 390px;
+  }
+  .hero {
+    height: calc(100vh - 97px);
+    width: calc(100% - 640px);
+    position: fixed;
+    top: 97px;
+    right: 0;
+    background: center / cover no-repeat;
+    // &::after {
+    //   content: '';
+    //   display: inline-block;
+    //   position: relative;
+    //   padding-top: 175%;
+    // }
+  }
+}
