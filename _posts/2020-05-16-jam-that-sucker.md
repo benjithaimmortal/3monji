@@ -33,7 +33,8 @@ Top Hat makes custom WordPress sites that are both deliciously beautiful and inc
     height: 35px;
     padding: 0 15px;
     color: white;
-    background-color: #d42c41;">
+    background-color: #d42c41;
+    border: unset;">
       How much do you pay?
   </button>
 <!-- </form> -->
@@ -48,9 +49,9 @@ Static Site
 
 You've probably heard of this before. These days it's called the Jamstack, or **J**avaScript, **A**PIs and **M**arkup, which is an easier way of thinking about its key components. But we should start from the beginning of JAM. Or is it the end?
 
-#### M[arkup]
+## M[arkup]
 
-## Some History
+#### Some History
 Actually, static sites have been around since the 1990's. Back before every page needed login credentials, when the internet was a small place with anonymous pages, many of those pages were static HTML markup. They were quick, available to everyone, and cheap on server resources. That's the definition of a marketing site!
 
 So why isn't everything static? Your own technical experience, for starters. Early static sites required experience with HTML at a bare minimum. Adding assets like audio, images, and video dynamically and styling the results was a big ask. A graphical interface for uploading media? Forget it.
@@ -59,9 +60,9 @@ That's where WordPress came in, and that's why it's been the king for almost 20 
 
 But today we've got [Ghost](https://ghost.org/) and [Forestry](https://forestry.io/) bringing the heat without the cost of a fire. These give you the freedom to use good-looking interfaces and a Google Docs-style text editor, and their base plans are free!
 
-#### A[PIs]
+## A[PIs]
 
-## You Probably Don't Need to Log In. But If You Do...
+#### You Probably Don't Need to Log In. But If You Do...
 You're not making Facebook 3.0. You're not asking for a number-munching Site as a Service. You're just trying to get visibility. Any dynamic experience you need to give your customers could come from a simple cookie.
 
 > If that last sentence sounded like gibberish, [talk to me later]({% link contact.html %})
@@ -71,8 +72,8 @@ But even if you are, modern web development uses these cool things called REST A
 That includes eCommerce. There is no reason to set up your products on a service like [Shopify](https://shopify.dev/docs/admin-api/rest/reference) or [WooCommerce](https://woocommerce.github.io/woocommerce-rest-api-docs/#introduction), then set them up again inside of your own site. Do it once, and then interface with it. Hence **A**pplication **P**rogramming **I**nterface. Heck, you can even use [SnipCart](https://snipcart.com/) and it will do most of the integrating for you. ✌️
 
 
-#### J[avaScript]
-## And then there was JavaScript
+## J[avaScript]
+#### And then there was JavaScript
 Wix costs up to *$500 a month* for fancy templates. WordPress plugins will quickly rack up site costs for functionality. But a one-size-fits-all solution, built to scale to any size, also adds a lot of dead weight. All the processing work for a page to render on a server *quickly* becomes more taxing than an API, and rarely is anything new actually getting done.
 
 A savvy developer could template and build a lightweight, fully custom site to your exact specifications. But actually there's more than that! What if your site could preload the next page's images while you read, or hack the browser to stop it from reloading content it already has? That's possible with modern JavaScript frameworks like React, Angular, and Vue.

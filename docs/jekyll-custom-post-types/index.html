@@ -159,17 +159,17 @@
 <h3 id="really-bad-but-easy-to-follow-example">Really bad but easy to follow example</h3>
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="nv">$artist_query</span> <span class="o">=</span> <span class="nf">get_posts</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
-  <span class="s1">'numberposts'</span> <span class="o">=&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>      <span class="c1">// all of 'em</span>
+  <span class="s1">'numberposts'</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">,</span>      <span class="c1">// all of 'em</span>
   <span class="s1">'post_type'</span>   <span class="o">=&gt;</span> <span class="s1">'artist'</span>
 <span class="p">));</span>
 
 <span class="c1">// iterate through all the Artists after a single query</span>
 <span class="k">foreach</span> <span class="p">(</span><span class="nv">$artist_query</span> <span class="k">as</span> <span class="nv">$artist</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nv">$id</span> <span class="o">=</span> <span class="nv">$artist</span><span class="p">[</span><span class="s1">'ID'</span><span class="p">];</span>
+  <span class="nv">$id</span> <span class="o">=</span> <span class="nv">$artist</span><span class="o">-&gt;</span><span class="no">ID</span><span class="p">;</span>
 
   <span class="c1">// making queries inside of loops is baaaaaad news</span>
   <span class="nv">$art_query</span> <span class="o">=</span> <span class="nf">get_posts</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
-    <span class="s1">'numberposts'</span>  <span class="o">=&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="s1">'numberposts'</span>  <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">,</span>
     <span class="s1">'post_type'</span>    <span class="o">=&gt;</span> <span class="s1">'art'</span><span class="p">,</span>
     <span class="s1">'meta_key'</span>     <span class="o">=&gt;</span> <span class="s1">'artist'</span><span class="p">,</span>
     <span class="s1">'meta_value'</span>   <span class="o">=&gt;</span> <span class="nv">$id</span>

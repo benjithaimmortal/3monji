@@ -1,16 +1,21 @@
 /* color variables */
 $red: #d42c41;
+// $yellow: #dfca46;
+$orange: #b55332;
+$green: #58cb58;
 $blue: #4c80a2;
+$altblue: #1c5479;
 $lightblue: #c8def0;
-$lightestblue: #c2b5b5;
+$border-color: #cddeec;
+$grey: #c2b5b5;
 $text: #363636;
 $white: #fff;
 $bg-color: $white;
-$border-color: #cddeec;
 
 // text variables
-$font-fam:        freight-sans-pro, sans-serif;
+$font-fam: freight-sans-pro, sans-serif;
 $serif-font: freight-text-pro, Helvetica, serif;
+$mono-font: calling-code, mono;
 
 /* general */
 * > * {

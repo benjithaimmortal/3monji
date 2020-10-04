@@ -53,7 +53,7 @@
   }
 }
 .the-stacks {
-  margin-bottom: 100px;
+  margin-bottom: 154px;
   .container-wide {
     display: flex;
     flex-wrap: wrap;
@@ -64,7 +64,7 @@
   }
   .role {
     width: 25%;
-    padding: 80px 0;
+    padding: 30px 0 80px;
     border-right: solid 1px $border-color;
     margin-right: -1px;
     &:last-of-type {
@@ -73,8 +73,8 @@
     }
   }
   .illy {
-    width: 35%;
-    margin: 0 auto 20px;
+    width: 55%;
+    margin: 0 auto 10px;
     background: top center / contain no-repeat;
     &::after {
       content: '';

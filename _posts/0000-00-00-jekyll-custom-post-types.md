@@ -43,17 +43,17 @@ This is a common thought process for a WordPress developer:
 ### Really bad but easy to follow example
 {% highlight php %}
 $artist_query = get_posts(array(
-  'numberposts' => -1,      // all of 'em
+  'numberposts' => 0,      // all of 'em
   'post_type'   => 'artist'
 ));
 
 // iterate through all the Artists after a single query
 foreach ($artist_query as $artist) {
-  $id = $artist['ID'];
+  $id = $artist->ID;
 
   // making queries inside of loops is baaaaaad news
   $art_query = get_posts(array(
-    'numberposts'  => -1,
+    'numberposts'  => 0,
     'post_type'    => 'art',
     'meta_key'     => 'artist',
     'meta_value'   => $id

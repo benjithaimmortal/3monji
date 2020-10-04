@@ -1,5 +1,26 @@
 .contact {
+  // position: sticky;
+  // bottom: 54px;
   margin-bottom: 115px;
+  padding-top: 140px;
+  position: relative;
+  &.contact-contact {
+    padding-top: unset;
+    .tabby-top, .tab-image { display: none; }
+  }
+  .tabby-top {
+    position: absolute;
+    top: -54px;
+    left: 50%;
+    transform: translateX(-50%);
+    path { fill: $white }
+  }
+  .tab-image {
+    position: absolute;
+    top: -27px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
   .container-medium {
     display: flex;
     flex-wrap: wrap;
