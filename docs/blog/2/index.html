@@ -266,7 +266,7 @@
       nextPage = nextPage + 1;
       $(".skeleton").addClass("active");
       
-      jQuery.ajax({
+      $.ajax({
         type: 'GET',
         url: '/3monji/blog/' + nextPage,
       })
@@ -305,8 +305,6 @@
         }
       }
     })
-
-    
   });
 </script>
     </div>

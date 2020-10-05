@@ -27,7 +27,7 @@ title: Blog
       nextPage = nextPage + 1;
       $(".skeleton").addClass("active");
       
-      jQuery.ajax({
+      $.ajax({
         type: 'GET',
         url: '{{ site.baseurl }}/blog/' + nextPage,
       })
@@ -66,7 +66,5 @@ title: Blog
         }
       }
     })
-
-    
   });
 </script>
